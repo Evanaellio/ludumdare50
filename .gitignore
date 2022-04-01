@@ -20,3 +20,6 @@ mono_crash.*.json
 
 # macOS-specific ignores
 .DS_Store
+
+# Folder for exported game
+.export
