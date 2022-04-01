@@ -11,5 +11,5 @@ func _ready()->void:
 	if !SettingsSaveLoad.load_settings():
 		SettingsControls.default_controls()
 	SettingsAudio.get_volumes()
-	#SettingsSaveLoad.save_settings()											#Call this method to trigger Settings saving
+	SettingsSaveLoad.save_settings()											#Call this method to trigger Settings saving
 

@@ -62,5 +62,5 @@ func get_resolution_data()->Dictionary:
 #LOADING RESOLUTION
 
 func set_resolution_data(resolution:Dictionary)->void:
-	SettingsResolution.set_borderless(resolution.Borderless)
-	SettingsResolution.set_scale(resolution.Scale)
+	SettingsResolution.set_borderless(resolution.get("Borderless", false))
+	SettingsResolution.set_scale(resolution.get("Scale", 3))
