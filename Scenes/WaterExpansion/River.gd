@@ -10,9 +10,9 @@ var stopped = false
 var DIRECTIONS = [Vector2.UP, Vector2.DOWN, Vector2.RIGHT, Vector2.LEFT]
 
 enum Tile {
-	WATER = 1,
+	WATER = 12,
 	PREDICTED_WATER = 2,
-	GRASS = 6,
+	GRASS = 11,
 	SOURCE = 8,
 }
 
@@ -37,6 +37,7 @@ func _init(p_starting_point: Vector2, p_tilemap: TileMap):
 
 func add_segment(segment: Vector2, tile = Tile.WATER):
 	tilemap.set_cellv(segment, tile)
+	tilemap.update_bitmask_region(segment)
 	segments.append(segment)
 
 func simulate_flow():
