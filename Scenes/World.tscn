@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/WaterExpansion/WaterExpansion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/BuildingsTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/BuildCursor.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
 
 [node name="World" type="Node2D"]
 
@@ -10,5 +13,31 @@
 [node name="Buildings" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
+cell_tile_origin = 2
+show_collision = true
+collision_layer = 256
+collision_mask = 256
 format = 1
-tile_data = PoolIntArray( 1245222, 3, 0, 1245224, 3, 0, 1245226, 3, 0, 1310749, 1, 0, 1310750, 1, 0, 1310751, 1, 0, 1310752, 1, 0, 1310753, 1, 0, 1310754, 1, 0, 1310755, 1, 0, 1310756, 1, 0, 1441819, 0, 0, 1572898, 2, 0, 1769493, 2, 0, 1769496, 2, 0, 1769501, 2, 0, 1769505, 2, 0, 1966106, 2, 0 )
+tile_data = PoolIntArray( 1245222, 3, 0, 1245224, 3, 0, 1245226, 3, 0, 1310738, 0, 0, 1310749, 1, 0, 1310750, 1, 0, 1310751, 1, 0, 1310752, 1, 0, 1310753, 1, 0, 1310754, 1, 0, 1310755, 1, 0, 1310756, 1, 0, 1441819, 0, 0, 1572898, 2, 0, 1638413, 0, 0, 1769493, 2, 0, 1769496, 2, 0, 1769501, 2, 0, 1769505, 2, 0, 1966106, 2, 0 )
+
+[node name="BuildCursor" type="Node2D" parent="."]
+modulate = Color( 1, 0.466667, 0.466667, 1 )
+script = ExtResource( 3 )
+
+[node name="TileMap" type="TileMap" parent="BuildCursor"]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+cell_tile_origin = 2
+collision_layer = 256
+collision_mask = 256
+format = 1
+
+[node name="Collision" type="Area2D" parent="BuildCursor"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="Shape" type="CollisionShape2D" parent="BuildCursor/Collision"]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="BuildCursor/Collision" to="BuildCursor" method="_on_Collision_body_entered"]
+[connection signal="body_exited" from="BuildCursor/Collision" to="BuildCursor" method="_on_Collision_body_exited"]

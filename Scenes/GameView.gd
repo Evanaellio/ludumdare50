@@ -32,7 +32,15 @@ func handle_camera(event: InputEvent):
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			$Camera2D.zoom /= 0.9
 
-	if event is InputEventMouseMotion && _moveCamera:
-		get_tree().set_input_as_handled();
-		$Camera2D.position += (_previousPosition - event.position) * $Camera2D.zoom;
-		_previousPosition = event.position;
+	if event is InputEventMouseMotion:
+		
+		var building = 2
+		$World/BuildCursor.set_building(building)
+
+		var pos = get_viewport().canvas_transform.affine_inverse().xform(event.position) - $World.position
+		$World/BuildCursor.set_build_position(pos)
+	
+		if _moveCamera:
+			get_tree().set_input_as_handled();
+			$Camera2D.position += (_previousPosition - event.position) * $Camera2D.zoom;
+			_previousPosition = event.position;
