@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/WaterExpansion/WaterExpansion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/BuildingsTileset.tres" type="TileSet" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="World" type="Node2D"]
 
 [node name="WaterExpansion" parent="." instance=ExtResource( 1 )]
 
