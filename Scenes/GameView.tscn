@@ -15,6 +15,8 @@ scale = Vector2( 0.2, 0.2 )
 transform = Transform2D( 0.2, 0, 0, 0.2, 0, 0 )
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource( 2 )]
+rect_scale = Vector2( 5, 5 )
+mouse_filter = 2
 
 [node name="KinematicCamera" type="KinematicBody2D" parent="."]
 
@@ -27,6 +29,8 @@ current = true
 zoom = Vector2( 4, 4 )
 smoothing_enabled = true
 smoothing_speed = 10.0
+
+[node name="Tween" type="Tween" parent="Camera2D"]
 
 [node name="World" parent="." instance=ExtResource( 1 )]
 position = Vector2( -802, -430 )
