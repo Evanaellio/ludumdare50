@@ -1,58 +1,161 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_64.tres" type="DynamicFont" id=1]
+
+[sub_resource type="Theme" id=1]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="DataTracker" type="VBoxContainer" parent="."]
+margin_right = 96.0
+margin_bottom = 50.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 401.0
-margin_bottom = 136.0
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_right = 393.0
-margin_bottom = 136.0
-custom_fonts/font = ExtResource( 1 )
-text = "Population"
-
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer"]
-margin_left = 397.0
-margin_right = 401.0
+[node name="Money" type="HBoxContainer" parent="DataTracker"]
+margin_right = 96.0
 margin_bottom = 14.0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 140.0
-margin_right = 401.0
-margin_bottom = 276.0
+[node name="Current" type="Label" parent="DataTracker/Money"]
+margin_right = 20.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "0000"
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
-margin_right = 57.0
-margin_bottom = 136.0
+[node name="Unit" type="Label" parent="DataTracker/Money"]
+margin_left = 24.0
+margin_right = 31.0
+margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
 text = "€"
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 61.0
-margin_right = 65.0
+[node name="Expected" type="Label" parent="DataTracker/Money"]
+margin_left = 35.0
+margin_right = 48.0
 margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "+ 0"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 280.0
-margin_right = 401.0
-margin_bottom = 416.0
+[node name="HBoxContainer" type="HBoxContainer" parent="DataTracker"]
+margin_top = 18.0
+margin_right = 96.0
+margin_bottom = 32.0
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
-margin_right = 225.0
-margin_bottom = 136.0
+[node name="Current" type="Label" parent="DataTracker/HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "0000"
+
+[node name="Unit" type="Label" parent="DataTracker/HBoxContainer"]
+margin_left = 24.0
+margin_right = 79.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Population"
+
+[node name="Expected" type="Label" parent="DataTracker/HBoxContainer"]
+margin_left = 83.0
+margin_right = 96.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "+ 0"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="DataTracker"]
+margin_top = 36.0
+margin_right = 96.0
+margin_bottom = 50.0
+
+[node name="ProgressBar" type="ProgressBar" parent="DataTracker/HBoxContainer3"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="DataTracker/HBoxContainer3"]
+margin_left = 44.0
+margin_right = 75.0
+margin_bottom = 14.0
+theme = SubResource( 1 )
 custom_fonts/font = ExtResource( 1 )
 text = "Water"
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/HBoxContainer3"]
-margin_left = 229.0
-margin_right = 233.0
+[node name="NextDooms" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -41.0
+margin_right = 42.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="NextDooms"]
+margin_right = 83.0
 margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Next water rise"
+align = 1
+
+[node name="Label3" type="Label" parent="NextDooms"]
+margin_top = 18.0
+margin_right = 83.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "000s"
+align = 1
+
+[node name="TimeTracker" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -73.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="TimeTracker"]
+margin_right = 73.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Survived Time"
+align = 1
+
+[node name="Label2" type="Label" parent="TimeTracker"]
+margin_top = 18.0
+margin_right = 73.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "00 day 00h"
+align = 1
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -119.0
+margin_top = -68.0
+margin_right = 119.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Housing" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Water" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 36.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Misc" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 36.0
+margin_right = -4.0
+margin_bottom = -4.0
