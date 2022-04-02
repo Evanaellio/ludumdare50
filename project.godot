@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/GameTemplate/Utility/ResourceAsyncLoader.gd"
 }, {
+"base": "Object",
+"class": "River",
+"language": "GDScript",
+"path": "res://Scenes/WaterExpansion/River.gd"
+}, {
 "base": "Resource",
 "class": "SaveSettings",
 "language": "GDScript",
@@ -21,6 +26,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ResourceAsyncLoader": "",
+"River": "",
 "SaveSettings": ""
 }
 

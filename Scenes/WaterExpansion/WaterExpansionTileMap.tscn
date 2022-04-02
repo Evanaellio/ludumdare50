@@ -3,7 +3,6 @@
 [ext_resource path="res://Scenes/WaterExpansion/WaterExpansionTileset.tres" type="TileSet" id=1]
 
 [node name="TileMap" type="TileMap"]
-scale = Vector2( 0.2, 0.2 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
