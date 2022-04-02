@@ -17,7 +17,7 @@ margin_bottom = 14.0
 margin_right = 20.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
-text = "0000"
+text = "2567"
 
 [node name="Unit" type="Label" parent="HBoxContainer"]
 margin_left = 24.0
@@ -28,7 +28,7 @@ text = "€  + "
 
 [node name="Expected" type="Label" parent="HBoxContainer"]
 margin_left = 49.0
-margin_right = 54.0
+margin_right = 64.0
 margin_bottom = 14.0
 custom_fonts/font = ExtResource( 1 )
-text = "0"
+text = "256"
