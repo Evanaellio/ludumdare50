@@ -80,5 +80,7 @@ func disable_build_mode():
 	building_mode = -1
 
 func place_building():
-	$World/Buildings.set_cellv($World/BuildCursor.get_tile_position(), building_mode)
+	position = $World/BuildCursor.get_tile_position()
+	$World/Buildings.set_cellv(position, building_mode)
+	$World/Buildings.update_bitmask_region(position)
 	disable_build_mode()
