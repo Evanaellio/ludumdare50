@@ -48,8 +48,6 @@ func simulate_flow():
 		if can_go_in_direction(segments[-1], direction):
 			available_directions.append(direction)
 
-	print(available_directions)
-
 	if current_direction in available_directions and straight_count > 0:
 		add_segment(segments[-1] + current_direction)
 		straight_count -= 1

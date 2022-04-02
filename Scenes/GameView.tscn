@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/GameView.gd" type="Script" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 160, 92 )
 
 [node name="GameView" type="Node2D"]
 script = ExtResource( 3 )
@@ -15,14 +12,9 @@ scale = Vector2( 0.2, 0.2 )
 transform = Transform2D( 0.2, 0, 0, 0.2, 0, 0 )
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource( 2 )]
+visible = false
 rect_scale = Vector2( 5, 5 )
 mouse_filter = 2
-
-[node name="KinematicCamera" type="KinematicBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicCamera"]
-position = Vector2( 160, 92 )
-shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -32,6 +24,3 @@ smoothing_speed = 10.0
 [node name="Tween" type="Tween" parent="Camera2D"]
 
 [node name="World" parent="." instance=ExtResource( 1 )]
-position = Vector2( -802, -430 )
-
-[connection signal="input_event" from="KinematicCamera" to="." method="_on_KinematicCamera_input_event"]
