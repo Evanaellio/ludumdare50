@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_64.tres" type="DynamicFont" id=1]
+[ext_resource path="res://HUD/Currency.gd" type="Script" id=2]
+
+[node name="Currency" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 19, 29 )
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 54.0
+margin_bottom = 14.0
+
+[node name="Current" type="Label" parent="HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "0000"
+
+[node name="Unit" type="Label" parent="HBoxContainer"]
+margin_left = 24.0
+margin_right = 45.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "€  + "
+
+[node name="Expected" type="Label" parent="HBoxContainer"]
+margin_left = 49.0
+margin_right = 54.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"

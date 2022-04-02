@@ -1,0 +1,113 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Sprites/Building/CityHall.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Building/Pump.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Building/Dam.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Building/House.png" type="Texture" id=4]
+[ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_64.tres" type="DynamicFont" id=5]
+[ext_resource path="res://HUD/BuildMenu.gd" type="Script" id=6]
+
+[node name="BuildMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+
+[node name="BuildButton" type="Button" parent="."]
+anchor_top = 0.968
+anchor_bottom = 0.968
+margin_left = 5.0
+margin_top = -19.92
+margin_right = 42.0
+margin_bottom = 0.0800018
+custom_fonts/font = ExtResource( 5 )
+text = "Build"
+
+[node name="BuildPanel" type="TabContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -117.0
+margin_top = -89.0
+margin_right = 156.0
+margin_bottom = -4.0
+custom_fonts/font = ExtResource( 5 )
+use_hidden_tabs_for_min_size = true
+
+[node name="Housing" type="Tabs" parent="BuildPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_fonts/font = ExtResource( 5 )
+
+[node name="ItemList" type="ItemList" parent="BuildPanel/Housing"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.5
+margin_top = -23.5
+margin_right = 132.5
+margin_bottom = 23.5
+custom_fonts/font = ExtResource( 5 )
+items = [ "House", ExtResource( 4 ), false, "House2", null, false ]
+auto_height = true
+max_columns = 5
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 16, 16 )
+
+[node name="Water" type="Tabs" parent="BuildPanel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ItemList" type="ItemList" parent="BuildPanel/Water"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.5
+margin_top = -23.5
+margin_right = 132.5
+margin_bottom = 23.5
+custom_fonts/font = ExtResource( 5 )
+items = [ "Pump", ExtResource( 2 ), false, "Tank", null, false, "Evaporator", null, false, "Dam", ExtResource( 3 ), false ]
+auto_height = true
+max_columns = 5
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 16, 16 )
+
+[node name="Misc" type="Tabs" parent="BuildPanel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ItemList" type="ItemList" parent="BuildPanel/Misc"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.5
+margin_top = -23.0
+margin_right = 132.5
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 5 )
+items = [ "CityHall", ExtResource( 1 ), false, "House2", null, false ]
+auto_height = true
+max_columns = 5
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 16, 16 )

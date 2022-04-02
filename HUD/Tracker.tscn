@@ -1,0 +1,87 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_64.tres" type="DynamicFont" id=1]
+[ext_resource path="res://HUD/Tracker.gd" type="Script" id=2]
+[ext_resource path="res://HUD/Population.tscn" type="PackedScene" id=3]
+[ext_resource path="res://HUD/WaterStorage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://HUD/Currency.tscn" type="PackedScene" id=5]
+
+[node name="Tracker" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Data" type="VBoxContainer" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 120.0
+margin_bottom = 72.0
+
+[node name="Currency" parent="Data" instance=ExtResource( 5 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 115.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 0, 14 )
+
+[node name="Population" parent="Data" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 18.0
+margin_right = 115.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 14 )
+
+[node name="WaterStorage" parent="Data" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 36.0
+margin_right = 115.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 14 )
+
+[node name="WaterRise" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -41.5
+margin_top = 5.0
+margin_right = 41.5
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="WaterRise"]
+margin_right = 83.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Next water rise"
+align = 1
+
+[node name="Time" type="Label" parent="WaterRise"]
+margin_top = 18.0
+margin_right = 83.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "000s"
+align = 1
+
+[node name="Survived" type="VBoxContainer" parent="."]
+anchor_left = 0.911
+anchor_right = 0.981
+margin_left = -50.52
+margin_top = 5.0
+margin_right = 0.0799866
+margin_bottom = 45.0
+
+[node name="Label" type="Label" parent="Survived"]
+margin_right = 73.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Survived Time"
+align = 1
+
+[node name="Time" type="Label" parent="Survived"]
+margin_top = 18.0
+margin_right = 73.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "00 day 00h"
+align = 1

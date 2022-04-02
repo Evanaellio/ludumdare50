@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_64.tres" type="DynamicFont" id=1]
+[ext_resource path="res://HUD/Population.gd" type="Script" id=2]
+
+[node name="Population" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 102.0
+margin_bottom = 14.0
+
+[node name="Current" type="Label" parent="HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "0000"
+
+[node name="Unit" type="Label" parent="HBoxContainer"]
+margin_left = 24.0
+margin_right = 93.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Population  + "
+
+[node name="Expected" type="Label" parent="HBoxContainer"]
+margin_left = 97.0
+margin_right = 102.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
