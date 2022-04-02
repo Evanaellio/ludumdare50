@@ -1,0 +1,228 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_64.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Sprites/Building/Pump.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Building/Dam.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Building/House.png" type="Texture" id=4]
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Sprites/Building/CityHall.png" type="Texture" id=6]
+
+[sub_resource type="Theme" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+
+[node name="DataTracker" type="VBoxContainer" parent="."]
+margin_right = 96.0
+margin_bottom = 50.0
+
+[node name="Money" type="HBoxContainer" parent="DataTracker"]
+margin_right = 96.0
+margin_bottom = 14.0
+
+[node name="Current" type="Label" parent="DataTracker/Money"]
+margin_right = 20.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "0000"
+
+[node name="Unit" type="Label" parent="DataTracker/Money"]
+margin_left = 24.0
+margin_right = 31.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "€"
+
+[node name="Expected" type="Label" parent="DataTracker/Money"]
+margin_left = 35.0
+margin_right = 48.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "+ 0"
+
+[node name="Population" type="HBoxContainer" parent="DataTracker"]
+margin_top = 18.0
+margin_right = 96.0
+margin_bottom = 32.0
+
+[node name="Current" type="Label" parent="DataTracker/Population"]
+margin_right = 20.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "0000"
+
+[node name="Unit" type="Label" parent="DataTracker/Population"]
+margin_left = 24.0
+margin_right = 79.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Population"
+
+[node name="Expected" type="Label" parent="DataTracker/Population"]
+margin_left = 83.0
+margin_right = 96.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "+ 0"
+
+[node name="WaterStorage" type="HBoxContainer" parent="DataTracker"]
+margin_top = 36.0
+margin_right = 96.0
+margin_bottom = 50.0
+
+[node name="ProgressBar" type="ProgressBar" parent="DataTracker/WaterStorage"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 40, 0 )
+custom_fonts/font = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="DataTracker/WaterStorage"]
+margin_left = 44.0
+margin_right = 75.0
+margin_bottom = 14.0
+theme = SubResource( 1 )
+custom_fonts/font = ExtResource( 1 )
+text = "Water"
+
+[node name="NextDooms" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -41.0
+margin_right = 42.0
+margin_bottom = 32.0
+
+[node name="Label" type="Label" parent="NextDooms"]
+margin_right = 83.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Next water rise"
+align = 1
+
+[node name="Label3" type="Label" parent="NextDooms"]
+margin_top = 18.0
+margin_right = 83.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "000s"
+align = 1
+
+[node name="TimeTracker" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -73.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="TimeTracker"]
+margin_right = 73.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+text = "Survived Time"
+align = 1
+
+[node name="Label2" type="Label" parent="TimeTracker"]
+margin_top = 18.0
+margin_right = 73.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 1 )
+text = "00 day 00h"
+align = 1
+
+[node name="BuildButton" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_right = 37.0
+custom_fonts/font = ExtResource( 1 )
+text = "Build"
+
+[node name="BuildPanel" type="TabContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -117.0
+margin_top = -89.0
+margin_right = 156.0
+margin_bottom = -4.0
+custom_fonts/font = ExtResource( 1 )
+use_hidden_tabs_for_min_size = true
+
+[node name="Housing" type="Tabs" parent="BuildPanel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+custom_fonts/font = ExtResource( 1 )
+
+[node name="ItemList" type="ItemList" parent="BuildPanel/Housing"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.5
+margin_top = -23.5
+margin_right = 132.5
+margin_bottom = 23.5
+custom_fonts/font = ExtResource( 1 )
+items = [ "House", ExtResource( 4 ), false, "House2", null, false ]
+auto_height = true
+max_columns = 5
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 16, 16 )
+
+[node name="Water" type="Tabs" parent="BuildPanel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ItemList" type="ItemList" parent="BuildPanel/Water"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.5
+margin_top = -23.5
+margin_right = 132.5
+margin_bottom = 23.5
+custom_fonts/font = ExtResource( 1 )
+items = [ "Pump", ExtResource( 2 ), false, "Tank", null, false, "Evaporator", null, false, "Dam", ExtResource( 3 ), false ]
+auto_height = true
+max_columns = 5
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 16, 16 )
+
+[node name="Misc" type="Tabs" parent="BuildPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ItemList" type="ItemList" parent="BuildPanel/Misc"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.5
+margin_top = -23.0
+margin_right = 132.5
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 1 )
+items = [ "CityHall", ExtResource( 6 ), false, "House2", null, false ]
+auto_height = true
+max_columns = 5
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 16, 16 )
