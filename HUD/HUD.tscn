@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_64.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Sprites/Building/Pump.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Building/Dam.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Building/House.png" type="Texture" id=4]
+[ext_resource path="res://HUD/HUD.gd" type="Script" id=5]
 
 [sub_resource type="Theme" id=1]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 5 )
 
 [node name="DataTracker" type="VBoxContainer" parent="."]
 margin_right = 96.0
@@ -123,17 +128,36 @@ custom_fonts/font = ExtResource( 1 )
 text = "00 day 00h"
 align = 1
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="BuildButton" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_right = 37.0
+custom_fonts/font = ExtResource( 1 )
+text = "Build"
+
+[node name="BuildPanel" type="PopupPanel" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -281.0
+margin_top = -94.0
+
+[node name="TabContainer" type="TabContainer" parent="BuildPanel"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -119.0
-margin_top = -68.0
-margin_right = 119.0
+margin_left = -136.5
+margin_top = -90.0
+margin_right = 136.5
+margin_bottom = -4.0
 custom_fonts/font = ExtResource( 1 )
+use_hidden_tabs_for_min_size = true
 
-[node name="Housing" type="Tabs" parent="TabContainer"]
+[node name="Housing" type="Tabs" parent="BuildPanel/TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -142,20 +166,68 @@ margin_right = -4.0
 margin_bottom = -4.0
 custom_fonts/font = ExtResource( 1 )
 
-[node name="Water" type="Tabs" parent="TabContainer"]
+[node name="ItemList" type="ItemList" parent="BuildPanel/TabContainer/Housing"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.5
+margin_top = -23.5
+margin_right = 132.5
+margin_bottom = 23.5
+custom_fonts/font = ExtResource( 1 )
+items = [ "House", ExtResource( 4 ), false, "House2", null, false ]
+auto_height = true
+max_columns = 5
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 16, 16 )
+
+[node name="Water" type="Tabs" parent="BuildPanel/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 36.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Misc" type="Tabs" parent="TabContainer"]
-visible = false
+[node name="ItemList" type="ItemList" parent="BuildPanel/TabContainer/Water"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.5
+margin_top = -23.5
+margin_right = 132.5
+margin_bottom = 23.5
+custom_fonts/font = ExtResource( 1 )
+items = [ "Pump", ExtResource( 2 ), false, "Tank", null, false, "Evaporator", null, false, "Dam", ExtResource( 3 ), false ]
+auto_height = true
+max_columns = 5
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 16, 16 )
+
+[node name="Misc" type="Tabs" parent="BuildPanel/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 36.0
+margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+
+[node name="ItemList" type="ItemList" parent="BuildPanel/TabContainer/Misc"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.5
+margin_top = -23.5
+margin_right = 132.5
+margin_bottom = 23.5
+custom_fonts/font = ExtResource( 1 )
+items = [ "House", null, false, "House2", null, false ]
+auto_height = true
+max_columns = 5
+same_column_width = true
