@@ -28,7 +28,7 @@ func _on_ItemList_water_item_selected(index):
 	if index == 2:
 		building = -1 # evaporator TODO
 	if index == 3:
-		building = 1 # dam
+		building = 4 # dam
 
 func _on_ItemList_misc_item_selected(index):
 	if index == 0:
