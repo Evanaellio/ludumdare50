@@ -10,6 +10,7 @@
 [node name="BuildMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 6 )
 
 [node name="BuildButton" type="Button" parent="."]
@@ -19,6 +20,7 @@ margin_left = 5.0
 margin_top = -19.92
 margin_right = 42.0
 margin_bottom = 0.0800018
+mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 5 )
 text = "Build"
 
@@ -52,8 +54,10 @@ margin_left = -132.5
 margin_top = -23.5
 margin_right = 132.5
 margin_bottom = 23.5
+mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 5 )
 items = [ "House", ExtResource( 4 ), false, "House2", null, false ]
+allow_reselect = true
 auto_height = true
 max_columns = 5
 same_column_width = true
@@ -78,8 +82,10 @@ margin_left = -132.5
 margin_top = -23.5
 margin_right = 132.5
 margin_bottom = 23.5
+mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 5 )
 items = [ "Pump", ExtResource( 2 ), false, "Tank", null, false, "Evaporator", null, false, "Dam", ExtResource( 3 ), false ]
+allow_reselect = true
 auto_height = true
 max_columns = 5
 same_column_width = true
@@ -104,10 +110,20 @@ margin_left = -132.5
 margin_top = -23.0
 margin_right = 132.5
 margin_bottom = 24.0
+mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 5 )
 items = [ "CityHall", ExtResource( 1 ), false, "House2", null, false ]
+allow_reselect = true
 auto_height = true
 max_columns = 5
 same_column_width = true
 icon_mode = 0
 fixed_icon_size = Vector2( 16, 16 )
+
+[connection signal="gui_input" from="BuildPanel/Housing/ItemList" to="." method="_on_ItemList_gui_input"]
+[connection signal="item_selected" from="BuildPanel/Housing/ItemList" to="." method="_on_ItemList_housing_item_selected"]
+[connection signal="gui_input" from="BuildPanel/Water/ItemList" to="." method="_on_ItemList_gui_input"]
+[connection signal="item_activated" from="BuildPanel/Water/ItemList" to="." method="_on_ItemList_water_item_activated"]
+[connection signal="item_selected" from="BuildPanel/Water/ItemList" to="." method="_on_ItemList_water_item_selected"]
+[connection signal="gui_input" from="BuildPanel/Misc/ItemList" to="." method="_on_ItemList_gui_input"]
+[connection signal="item_selected" from="BuildPanel/Misc/ItemList" to="." method="_on_ItemList_misc_item_selected"]

@@ -6,9 +6,12 @@ var _moveCamera: bool = false;
 onready var tween = $Camera2D/Tween
 onready var zoom_target = $Camera2D.zoom
 
-# Called when the node enters the scene tree for the first time.
+onready var build_menu = $CanvasLayer/HUD/BuildMenu
+
+var building_mode = -1
+
 func _ready():
-	pass # Replace with function body.
+	build_menu.connect("on_building_selected", self, "enable_build_mode")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,13 +24,20 @@ func _unhandled_input(event: InputEvent):
 
 func handle_camera(event: InputEvent):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT or event.button_index == BUTTON_MIDDLE:
-			get_tree().set_input_as_handled();
+		if building_mode > -1 and event.button_index == BUTTON_LEFT:
+			if event.pressed == false and !$World/BuildCursor.collide:
+				place_building()
+
+		elif event.button_index == BUTTON_LEFT or event.button_index == BUTTON_MIDDLE:
+			#get_tree().set_input_as_handled();
 			if event.is_pressed():
 				_previousPosition = event.position;
 				_moveCamera = true;
 			else:
 				_moveCamera = false;
+				
+		if event.button_index == BUTTON_RIGHT and event.pressed == false:
+			disable_build_mode()
 
 		if event.button_index == BUTTON_WHEEL_UP:
 			zoom(zoom_target*0.9, event.position)
@@ -36,12 +46,11 @@ func handle_camera(event: InputEvent):
 			zoom(zoom_target/0.9, event.position)
 
 	if event is InputEventMouseMotion:
-		
-		var building = 2
-		$World/BuildCursor.set_building(building)
 
-		var pos = get_viewport().canvas_transform.affine_inverse().xform(event.position) - $World.position
-		$World/BuildCursor.set_build_position(pos)
+		if building_mode > -1:
+			$World/BuildCursor.set_building(building_mode)
+			var pos = get_viewport().canvas_transform.affine_inverse().xform(event.position) - $World.position
+			$World/BuildCursor.set_build_position(pos)
 	
 		if _moveCamera:
 			get_tree().set_input_as_handled();
@@ -60,3 +69,16 @@ func zoom(new_zoom, cursor_position):
 	#tween.interpolate_property($Camera2D, "position", $Camera2D.position, cam_pos, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	#tween.interpolate_property($Camera2D, "smoothing_speed", 100, 10, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	#tween.start()
+
+func enable_build_mode(building_id):
+	$World/BuildCursor.visible = true
+	building_mode = building_id
+	_moveCamera = false;
+	
+func disable_build_mode():
+	$World/BuildCursor.visible = false
+	building_mode = -1
+
+func place_building():
+	$World/Buildings.set_cellv($World/BuildCursor.get_tile_position(), building_mode)
+	disable_build_mode()

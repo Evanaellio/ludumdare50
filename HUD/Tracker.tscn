@@ -9,6 +9,7 @@
 [node name="Tracker" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 2 )
 
 [node name="Data" type="VBoxContainer" parent="."]
@@ -16,6 +17,7 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = 120.0
 margin_bottom = 72.0
+mouse_filter = 2
 
 [node name="Currency" parent="Data" instance=ExtResource( 5 )]
 anchor_right = 0.0
@@ -47,6 +49,7 @@ margin_left = -41.5
 margin_top = 5.0
 margin_right = 41.5
 margin_bottom = 50.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="WaterRise"]
 margin_right = 83.0
@@ -70,6 +73,7 @@ margin_left = -50.52
 margin_top = 5.0
 margin_right = 0.0799866
 margin_bottom = 45.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Survived"]
 margin_right = 73.0
