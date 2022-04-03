@@ -9,9 +9,12 @@
 script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 650, 370 )
 current = true
 zoom = Vector2( 4, 4 )
+limit_left = 32
+limit_top = 32
+limit_right = 1664
+limit_bottom = 1664
 smoothing_speed = 10.0
 
 [node name="Tween" type="Tween" parent="Camera2D"]

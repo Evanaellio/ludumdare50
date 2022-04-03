@@ -34,6 +34,8 @@ func _ready():
 	X_SIZE = MapVariables.x_size
 	Y_SIZE = MapVariables.y_size
 	seed(MapVariables.map_seed.hash())
+	if DIST_SOURCE_BORDER > Y_SIZE / 10 :
+		DIST_SOURCE_BORDER = 0
 	
 	var astar_points = []
 	astar_node.reserve_space(X_SIZE*Y_SIZE)

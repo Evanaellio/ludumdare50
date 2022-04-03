@@ -19,6 +19,10 @@ func _ready():
 	speed_menu.connect("on_sim_speed_changed", self, "set_sim_speed")
 	
 	building_mode = BuildingSettings.BuildingID.CityHall
+	
+	$Camera2D.limit_right = (MapVariables.x_size + 4) * 16
+	$Camera2D.limit_bottom = (MapVariables.y_size + 4) * 16
+	#$Camera2D.offset = Vector2((MapVariables.x_size + 4) * 8, (MapVariables.y_size + 4) * 8)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
