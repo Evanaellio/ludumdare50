@@ -17,6 +17,14 @@ enum Tile {
 	BORDER = 9,
 }
 
+enum Building_Tiles {
+	NONE = -1,
+	CityHall = 0,
+	House = 2,
+	Pump = 3,
+	Dam = 4,
+}
+
 
 var current_direction = DIRECTIONS[randi() % DIRECTIONS.size()]
 var straight_count = 2
@@ -94,12 +102,14 @@ func can_go_in_direction(segment: Vector2, direction: Vector2) -> bool:
 		return (tilemap.get_cellv(next_segment) == Tile.GRASS || 
 			tilemap.get_cellv(next_segment) == Tile.BORDER)
 
-func _on_river_collider_body_entered(body):
+
+func _on_river_collider_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
 	var bodies = $Collider.get_overlapping_bodies()
 	if(bodies.size() > 1):
 		for b in bodies:
-			pass
-			#if(b.has_method("destroy_building")):
-			#print(b)
-			#print(b.position)
-	
+			if b.name == "Buildings":
+				var gameview = get_node("../../../..")
+				if gameview != null and gameview.has_method("destroy_building"):
+					gameview.destroy_building(segments[-1])
+				#var tilemap = get_node("../../../Buildings")
+				#var building = tilemap.get_cellv(segments[-1])
