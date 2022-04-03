@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/WaterExpansion/WaterExpansion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/BuildingsTileset.tres" type="TileSet" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Assets/Sprites/warning.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Sprites/Building/debris.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Sounds/bg.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Sounds/build.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Sounds/destroy.wav" type="AudioStream" id=10]
 
 [sub_resource type="TileSet" id=2]
 0/name = "warning.png 0"
@@ -85,6 +87,10 @@ collision_mask = 256
 [node name="Shape" type="CollisionShape2D" parent="BuildCursor/Collision"]
 shape = SubResource( 1 )
 
+[node name="Sfx" type="AudioStreamPlayer" parent="BuildCursor"]
+stream = ExtResource( 9 )
+bus = "SFX"
+
 [node name="Simu" type="Node" parent="."]
 script = ExtResource( 4 )
 
@@ -99,6 +105,10 @@ autostart = true
 stream = ExtResource( 8 )
 autoplay = true
 bus = "Music"
+
+[node name="BreakSfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+bus = "SFX"
 
 [connection signal="body_entered" from="BuildCursor/Collision" to="BuildCursor" method="_on_Collision_body_entered"]
 [connection signal="body_exited" from="BuildCursor/Collision" to="BuildCursor" method="_on_Collision_body_exited"]

@@ -112,6 +112,8 @@ func place_building():
 
 	if building_mode == BuildingSettings.BuildingID.CityHall:
 		disable_build_mode()
+	
+	$World/BuildCursor/Sfx.play()
 
 func destroy_building(position):
 	if not MapVariables.inverse_build_map.has(position):
@@ -129,6 +131,9 @@ func destroy_building(position):
 
 	$World/Buildings.set_cellv(real_pos, -1)
 	$World/Buildings.update_bitmask_region(real_pos)
+	
+	$World/BreakSfx.position = real_pos * 16
+	$World/BreakSfx.play()
 
 	$World/Simu.remove_building(real_pos)
 
