@@ -1,16 +1,20 @@
 extends Node2D
 
 var current_building = BuildingSettings.BuildingID.NONE
+var can_be_placed = false
 var collide = false
 
 func _process(_delta):
 	if collide:
 		modulate = Color("#ff7777")
+		can_be_placed = false
 	else:
 		if MapVariables.currency > BuildingSettings.buildings_cost[current_building]:
 			modulate = Color("#84ff77")
+			can_be_placed = true
 		else:
 			modulate = Color("#ff7777")
+			can_be_placed = false
 
 func set_building(building_id):
 	current_building = building_id

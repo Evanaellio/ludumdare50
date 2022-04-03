@@ -25,7 +25,7 @@ func _unhandled_input(event: InputEvent):
 func handle_camera(event: InputEvent):
 	if event is InputEventMouseButton:
 		if building_mode > -1 and event.button_index == BUTTON_LEFT:
-			if event.pressed == false and !$World/BuildCursor.collide:
+			if event.pressed == false and $World/BuildCursor.can_be_placed:
 				place_building()
 	
 		elif event.button_index == BUTTON_LEFT or event.button_index == BUTTON_MIDDLE:
