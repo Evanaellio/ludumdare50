@@ -1,8 +1,13 @@
 extends Node2D
 
+export var X_SIZE = 100
+export var Y_SIZE = 100
+export var NB_RIVERS = 3
+
 onready var tilemap : TileMap = $TileMap
 
-var rivers = []
+var growing_rivers = []
+var still_rivers = []
 
 enum Tile {
 	GRASS = 11,
@@ -12,19 +17,32 @@ enum Tile {
 func _ready():
 	randomize()
 	
-	for x in range(0, 102):
-		for y in range(0, 102):
-			if x == 0 or x == 101 or y == 0 or y == 101:
+	for x in range(0, X_SIZE + 2):
+		for y in range(0, Y_SIZE + 2):
+			if x == 0 or x == X_SIZE + 1 or y == 0 or y == Y_SIZE + 1:
 				$TileMap.set_cell(x, y, Tile.BORDER)
 			else:
 				$TileMap.set_cell(x, y, Tile.GRASS)
+	for x in range (0, NB_RIVERS):
+		add_river()
 	
-	rivers.append(River.new(Vector2(56,26), tilemap))
-	rivers.append(River.new(Vector2(38,18), tilemap))
-	rivers.append(River.new(Vector2(39,36), tilemap))
-	rivers.append(River.new(Vector2(75,37), tilemap))
-	rivers.append(River.new(Vector2(78,14), tilemap))
 
 func _on_Timer_timeout():
-	for river in rivers:
+	for river in growing_rivers:
 		river.simulate_flow()
+		if river.stopped :
+			remove_river(growing_rivers.find(river))
+			add_river()
+			
+
+func remove_river(index):
+	still_rivers.append(growing_rivers[index])
+	growing_rivers.remove(index)
+	
+
+func add_river():
+	var river = preload("res://Scenes/WaterExpansion/River.tscn").instance()
+	river.init(Vector2(randi() % X_SIZE, randi() % Y_SIZE), tilemap)
+	$Rivers.add_child(river)
+	growing_rivers.append(river)
+	

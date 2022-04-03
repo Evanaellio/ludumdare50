@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/GameTemplate/Utility/ResourceAsyncLoader.gd"
 }, {
-"base": "Object",
+"base": "Node2D",
 "class": "River",
 "language": "GDScript",
 "path": "res://Scenes/WaterExpansion/River.gd"
