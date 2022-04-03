@@ -4,6 +4,10 @@ export var X_SIZE = 100
 export var Y_SIZE = 100
 export var NB_RIVERS = 3
 
+export var DIST_SOURCE_BUILDINGS = 3
+export var DIST_SOURCE_SOURCE = 3
+export var DIST_SOURCE_BORDER = 5
+
 onready var tilemap : TileMap = $TileMap
 
 signal water_placed
@@ -12,8 +16,11 @@ var growing_rivers = []
 var still_rivers = []
 
 enum Tile {
+	WATER = 12,
+	PREDICTED_WATER = 2,
 	GRASS = 11,
-	BORDER = 9
+	SOURCE = 8,
+	BORDER = 9,
 }
 
 const TIMER_BASE = 0.5
@@ -118,10 +125,64 @@ func remove_river(index):
 	
 
 func add_river():
+	var table = build_spawn_table()
+	var new_pos = draw_source(table)
 	var river = preload("res://Scenes/WaterExpansion/River.tscn").instance()
-	river.init(Vector2(randi() % X_SIZE, randi() % Y_SIZE), tilemap, self)
+	river.init(new_pos, tilemap, self)
 	$Rivers.add_child(river)
 	growing_rivers.append(river)
+
+func draw_source(spawn_table):
+	if spawn_table.size() != 0:
+		var total_weight = 0
+		for weight in spawn_table.values():
+			total_weight += weight
+		if total_weight != 0:
+			var draw = randi() % total_weight
+			for pos in spawn_table.keys():
+				draw = draw - spawn_table[pos]
+				if draw < 0:
+					return pos
+	# Option de PLS
+	var x = DIST_SOURCE_BORDER + randi() % (X_SIZE - 2*DIST_SOURCE_BORDER)
+	var y = DIST_SOURCE_BORDER + randi() % (Y_SIZE - 2*DIST_SOURCE_BORDER)
+	return Vector2(x, y)
+
+func build_spawn_table():
+	var table = {}
+	var building_pos = []
+	var source_pos = []
+#	var water_pos = []
+	var pos
+	for x in range(1 + DIST_SOURCE_BORDER, X_SIZE + 1 - DIST_SOURCE_BORDER):
+		for y in range(1 + DIST_SOURCE_BORDER, Y_SIZE + 1 - DIST_SOURCE_BORDER):
+			pos = Vector2(x, y)
+			if MapVariables.inverse_build_map.has(pos):
+				building_pos.append(pos)
+			elif tilemap.get_cellv(pos) == Tile.SOURCE :
+				source_pos.append(pos)
+			elif tilemap.get_cellv(pos) != Tile.WATER :
+				table[Vector2(x,y)] = 10
+#	for w_pos in water_pos:
+#		for x in [-1, 0, 1]:
+#			for y in [-1, 0, 1]:
+#				pos = w_pos + Vector2(x,y)
+#				if pos in table.keys():
+#					table[pos] = 5
+	for build_pos in building_pos:
+		for x in range (-DIST_SOURCE_BUILDINGS , DIST_SOURCE_BUILDINGS +1):
+			for y in range (-DIST_SOURCE_BUILDINGS + abs(x) , DIST_SOURCE_BUILDINGS +1 - abs(x)):
+				pos = build_pos + Vector2(x,y)
+				if pos in table.keys():
+					table[pos] = 1
+	for s_pos in source_pos:
+		for x in range (-DIST_SOURCE_SOURCE , DIST_SOURCE_SOURCE +1):
+			for y in range (-DIST_SOURCE_SOURCE + abs(x) , DIST_SOURCE_SOURCE +1 - abs(x)):
+				pos = s_pos + Vector2(x,y)
+				if pos in table.keys():
+					table[pos] = 1
+	return table
+
 
 func update_timers(selected_sim_speed):
 	var new_sim_speed_factor = SpeedSettings.SpeedFactor[selected_sim_speed]
