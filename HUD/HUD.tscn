@@ -17,4 +17,3 @@ script = ExtResource( 5 )
 mouse_filter = 2
 
 [node name="BuildMenu" parent="." instance=ExtResource( 2 )]
-mouse_filter = 2

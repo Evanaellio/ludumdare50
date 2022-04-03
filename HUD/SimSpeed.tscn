@@ -15,6 +15,7 @@ anchor_bottom = 0.5
 margin_top = -31.5
 margin_right = 22.0
 margin_bottom = 31.5
+rect_min_size = Vector2( 22, 0 )
 custom_fonts/font = ExtResource( 1 )
 items = [ ">", null, false, ">>", null, false, ">>>", null, false ]
 auto_height = true

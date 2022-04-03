@@ -6,6 +6,7 @@ enum BuildingID {
 	House = 1,
 	Pump = 2,
 	Dam = 3,
+	Bridge = 4,
 }
 
 var buildings_sprite = [
@@ -13,6 +14,7 @@ var buildings_sprite = [
 	2, #House
 	3, #Pump
 	4, #Dam
+	4, #Bridge TODO
 ]
 
 var buildings_max_inhabitants = [
@@ -20,6 +22,7 @@ var buildings_max_inhabitants = [
 	5, #House
 	0, #Pump
 	0, #Dam
+	0, #Bridge
 ]
 
 var buildings_max_employees = [
@@ -27,6 +30,7 @@ var buildings_max_employees = [
 	0, #House
 	1, #Pump
 	0, #Dam
+	0, #Bridge
 ]
 
 var buildings_cost = [
@@ -34,6 +38,7 @@ var buildings_cost = [
 	50, #House
 	25, #Pump
 	30, #Dam
+	10, #Bridge TODO
 ]
 
 var buildings_size = [
@@ -41,6 +46,7 @@ var buildings_size = [
 	Vector2(2, 2), #House
 	Vector2(1, 1), #Pump
 	Vector2(1, 1), #Dam
+	Vector2(1, 1), #Bridge
 ]
 
 func get_id_by_sprite(sprite):

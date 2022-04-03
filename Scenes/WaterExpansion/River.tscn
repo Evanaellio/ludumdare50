@@ -61,7 +61,7 @@ texture = SubResource( 6 )
 
 [node name="Source" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Collider" type="Area2D" parent="."]
