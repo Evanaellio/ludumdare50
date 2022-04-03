@@ -22,8 +22,8 @@ func _ready():
 	
 	building_mode = BuildingSettings.BuildingID.CityHall
 	
-	$Camera2D.limit_right = (MapVariables.x_size + 4) * 16
-	$Camera2D.limit_bottom = (MapVariables.y_size + 3) * 16
+	#$Camera2D.limit_right = (MapVariables.x_size + 4) * 16
+	#$Camera2D.limit_bottom = (MapVariables.y_size + 3) * 16
 	#$Camera2D.offset = Vector2((MapVariables.x_size + 4) * 8, (MapVariables.y_size + 4) * 8)
 
 
@@ -76,21 +76,21 @@ func handle_camera(event: InputEvent):
 			_previousPosition = event.position;
 
 func zoom(new_zoom, cursor_position):
-	if $Camera2D.get_viewport().size.x * new_zoom.x / 5 > ($Camera2D.limit_right - $Camera2D.limit_left) * 0.85:
-		return;
-	if $Camera2D.get_viewport().size.y * new_zoom.y / 5 > ($Camera2D.limit_bottom - $Camera2D.limit_top) * 0.85:
-		return;
+#	if $Camera2D.get_viewport().size.x * new_zoom.x / 5 > ($Camera2D.limit_right - $Camera2D.limit_left) * 0.85:
+#		return;
+#	if $Camera2D.get_viewport().size.y * new_zoom.y / 5 > ($Camera2D.limit_bottom - $Camera2D.limit_top) * 0.85:
+#		return;
 	var cam_pos = $Camera2D.position + (-0.5 * $Camera2D.get_viewport().size / 5 + cursor_position)*(zoom_target - new_zoom)
 	
-	if cam_pos.x > $Camera2D.limit_right - $Camera2D.get_viewport().size.x / 5:
-		cam_pos.x = $Camera2D.limit_right - $Camera2D.get_viewport().size.x / 5
-	elif cam_pos.x < $Camera2D.limit_left:
-		cam_pos.x = $Camera2D.limit_left
-		
-	if cam_pos.y > $Camera2D.limit_bottom - $Camera2D.get_viewport().size.y / 5:
-		cam_pos.y = $Camera2D.limit_bottom - $Camera2D.get_viewport().size.y / 5
-	elif cam_pos.y < $Camera2D.limit_top:
-		cam_pos.y = $Camera2D.limit_top
+#	if cam_pos.x > $Camera2D.limit_right - $Camera2D.get_viewport().size.x / 5:
+#		cam_pos.x = $Camera2D.limit_right - $Camera2D.get_viewport().size.x / 5
+#	elif cam_pos.x < $Camera2D.limit_left:
+#		cam_pos.x = $Camera2D.limit_left
+#
+#	if cam_pos.y > $Camera2D.limit_bottom - $Camera2D.get_viewport().size.y / 5:
+#		cam_pos.y = $Camera2D.limit_bottom - $Camera2D.get_viewport().size.y / 5
+#	elif cam_pos.y < $Camera2D.limit_top:
+#		cam_pos.y = $Camera2D.limit_top
 		
 	zoom_target = new_zoom
 	$Camera2D.zoom= zoom_target
