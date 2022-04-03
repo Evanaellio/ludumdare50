@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CanvasModulate",
+"class": "DayNightCycle",
+"language": "GDScript",
+"path": "res://Scenes/DayNight.gd"
+}, {
 "base": "Reference",
 "class": "ResourceAsyncLoader",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://addons/GameTemplate/Utility/SaveSettings.gd"
 } ]
 _global_script_class_icons={
+"DayNightCycle": "",
 "ResourceAsyncLoader": "",
 "River": "",
 "SaveSettings": ""
@@ -55,6 +61,7 @@ SfxManager="*res://addons/GameTemplate/Autoload/SfxManager.gd"
 HtmlFocus="*res://addons/GameTemplate/Autoload/HtmlFocus.tscn"
 MapVariables="*res://addons/GameTemplate/Autoload/MapVariables.gd"
 BuildingSettings="*res://addons/GameTemplate/Autoload/BuildingSettings.gd"
+Time="*res://addons/GameTemplate/Autoload/time.gd"
 
 [debug]
 

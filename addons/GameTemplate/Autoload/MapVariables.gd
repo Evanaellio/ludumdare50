@@ -14,8 +14,6 @@ var water_storage = 0
 
 var next_water_rise_hours = 0
 
-var survived_hours = 0
-
 # {
 #   type: BuildingSettings.BuildingID
 #   position: Vector2
