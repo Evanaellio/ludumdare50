@@ -25,6 +25,7 @@ func add_building(building_id, position):
 		"position": position,
 		"enabled": true
 	})
+	MapVariables.currency -= BuildingSettings.buildings_cost[building_id]
 	update()
 
 func remove_building(position):
