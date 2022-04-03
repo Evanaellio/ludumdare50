@@ -5,7 +5,7 @@ var collide = false
 
 func set_building(building_id):
 	current_building = building_id
-
+	
 	$TileMap.set_cell(0, 0, building_id)
 	var texture = $TileMap.tile_set.tile_get_texture(building_id)
 	
@@ -19,10 +19,10 @@ func set_build_position(local_pos):
 	else:
 		pos -= $TileMap.tile_set.tile_get_region(current_building).size / 2
 		pos -= Vector2(8, 8)
-
+	
 	pos = Vector2(int(pos.x / 16+1), int(pos.y / 16)+1) * 16
 	position = pos
-	
+
 func get_tile_position():
 	return position / 16
 
