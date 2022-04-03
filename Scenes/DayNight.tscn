@@ -4,7 +4,7 @@
 
 [node name="DayNightCycle" type="CanvasModulate"]
 script = ExtResource( 1 )
-color_night = Color( 0.121569, 0.14902, 0.521569, 0.74902 )
+color_night = Color( 0.254902, 0.286275, 0.717647, 1 )
 color_dawn = Color( 0.866667, 0.572549, 0.572549, 1 )
 color_day = Color( 0.905882, 0.882353, 0.768627, 1 )
 color_dusk = Color( 0.498039, 0.607843, 0.788235, 1 )
