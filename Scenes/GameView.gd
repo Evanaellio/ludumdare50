@@ -100,6 +100,9 @@ func place_building():
 
 	$World/Simu.add_building(building_mode, position)
 
+	if building_mode == BuildingSettings.BuildingID.Bridge:
+		$World/WaterExpansion.add_bridge(position)
+
 	if building_mode == BuildingSettings.BuildingID.CityHall:
 		disable_build_mode()
 

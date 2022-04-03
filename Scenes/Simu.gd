@@ -76,6 +76,12 @@ func on_water_placed():
 	for building in MapVariables.building:
 		if building["type"] == BuildingSettings.BuildingID.CityHall:
 			continue
+		if building["type"] == BuildingSettings.BuildingID.Dam:
+			continue
+
+		if building["type"] == BuildingSettings.BuildingID.Bridge:
+			if get_node("../WaterExpansion/TileMap").get_cellv(building["position"]) == 12:
+				continue
 
 		var connected = water_exp.can_connect_city_hall(building["position"])
 		building["enabled"] = connected

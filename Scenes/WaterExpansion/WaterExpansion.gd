@@ -19,6 +19,7 @@ enum Tile {
 const TIMER_BASE = 0.5
 
 onready var astar_node = AStar.new()
+const ASTAR_BRIDGE_OFFSET = 1000000
 
 func _ready():
 	$Timer.wait_time = TIMER_BASE
@@ -44,27 +45,44 @@ func _ready():
 		add_river()
 
 	for point in astar_points:
-		var points_relative = PoolVector2Array([
-			point + Vector2.RIGHT,
-			point + Vector2.LEFT,
-			point + Vector2.DOWN,
-			point + Vector2.UP,
-		])
-		var point_index = astar_index(point)
-		for point_relative in points_relative:
-			var point_relative_index = astar_index(point_relative)
-			if not astar_node.has_point(point_index):
-				continue
-			if not astar_node.has_point(point_relative_index):
-				continue
-			astar_node.connect_points(point_index, point_relative_index, true)
+		_astar_connect(point)
 
-func astar_index(point):
-	return point.x + X_SIZE * point.y
+func _astar_connect(point, is_bridge = false):
+	var points_relative = PoolVector2Array([
+		point + Vector2.RIGHT,
+		point + Vector2.LEFT,
+		point + Vector2.DOWN,
+		point + Vector2.UP,
+	])
+	var point_index = astar_index(point, is_bridge)
+	for point_relative in points_relative:
+		var point_relative_index = astar_index(point_relative, is_bridge)
+		if not astar_node.has_point(point_index):
+			continue
+		if not astar_node.has_point(point_relative_index):
+			continue
+		astar_node.connect_points(point_index, point_relative_index, true)
+
+func astar_index(point, is_bridge = false):
+	if is_bridge:
+		return point.x + X_SIZE * point.y + ASTAR_BRIDGE_OFFSET
+	else:
+		return point.x + X_SIZE * point.y
 
 func remove_astar_point(point):
 	if astar_node.has_point(astar_index(point)):
 		astar_node.remove_point(astar_index(point))
+	emit_signal("water_placed")
+
+func add_bridge(point):
+	if !astar_node.has_point(astar_index(point, true)):
+		astar_node.add_point(astar_index(point, true), Vector3(point.x, point.y, 0.0))
+		# connect between bridges
+		_astar_connect(point, true)
+		# connect to tile below (if grass)
+		if astar_node.has_point(astar_index(point)):
+			astar_node.connect_points(astar_index(point), astar_index(point, true), true)
+
 	emit_signal("water_placed")
 
 func can_connect_city_hall(from):
@@ -75,8 +93,6 @@ func can_connect_city_hall(from):
 	var hall_pos = MapVariables.find_by_type(BuildingSettings.BuildingID.CityHall)
 	if not astar_node.has_point(astar_index(hall_pos)):
 		return false
-	var test = astar_node.get_point_connections(astar_index(hall_pos))
-	var test2 = astar_node.get_point_connections(astar_index(from))
 	var path = astar_node.get_id_path(astar_index(hall_pos), astar_index(from))
 	return path.size() > 0
 

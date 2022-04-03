@@ -14,7 +14,7 @@ var buildings_sprite = [
 	2, #House
 	3, #Pump
 	4, #Dam
-	4, #Bridge TODO
+	5, #Bridge
 ]
 
 var buildings_max_inhabitants = [
