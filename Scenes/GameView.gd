@@ -98,7 +98,8 @@ func place_building():
 
 	$World/Simu.add_building(building_mode, position)
 
-	disable_build_mode()
+	if building_mode == BuildingSettings.BuildingID.CityHall:
+		disable_build_mode()
 
 func destroy_building(position):
 	if not MapVariables.inverse_build_map.has(position):
