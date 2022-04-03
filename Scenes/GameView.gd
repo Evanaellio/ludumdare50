@@ -8,10 +8,14 @@ onready var zoom_target = $Camera2D.zoom
 
 onready var build_menu = $CanvasLayer/HUD/BuildMenu
 
+onready var speed_menu = $CanvasLayer/HUD/SimSpeed
+onready var world_sim = $World/Simu
+
 var building_mode = -1
 
 func _ready():
 	build_menu.connect("on_building_selected", self, "enable_build_mode")
+	speed_menu.connect("on_sim_speed_changed", self, "set_sim_speed")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -84,7 +88,10 @@ func place_building():
 	var building_sprite = BuildingSettings.buildings_sprite[building_mode]
 	$World/Buildings.set_cellv(position, building_sprite)
 	$World/Buildings.update_bitmask_region(position)
-
+	
 	$World/Simu.add_building(building_mode, position)
-
+	
 	disable_build_mode()
+
+func set_sim_speed(selected_sim_speed):
+	world_sim.update_timers(selected_sim_speed)

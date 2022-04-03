@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_64.tres" type="DynamicFont" id=1]
+[ext_resource path="res://HUD/SimSpeed.gd" type="Script" id=2]
+
+[node name="SimSpeed" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 1
+script = ExtResource( 2 )
+
+[node name="SpeedList" type="ItemList" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -31.5
+margin_right = 53.0
+margin_bottom = 31.5
+custom_fonts/font = ExtResource( 1 )
+items = [ "Speed0.5", null, false, "Speed1", null, false, "Speed2", null, false ]
+auto_height = true
+
+[connection signal="item_selected" from="SpeedList" to="." method="_on_SpeedList_item_selected"]

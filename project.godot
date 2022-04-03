@@ -62,6 +62,7 @@ HtmlFocus="*res://addons/GameTemplate/Autoload/HtmlFocus.tscn"
 MapVariables="*res://addons/GameTemplate/Autoload/MapVariables.gd"
 BuildingSettings="*res://addons/GameTemplate/Autoload/BuildingSettings.gd"
 Time="*res://addons/GameTemplate/Autoload/time.gd"
+SpeedSettings="*res://addons/GameTemplate/Autoload/SpeedSettings.gd"
 
 [debug]
 

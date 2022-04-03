@@ -5,9 +5,16 @@ const POPU_INCREASE_PER_BUILDING_PER_TICK = 1
 const CURRENCY_INCREASE_PER_POPU_PER_TICK = 2
 const START_CURRENCY = 10
 
+const MONEY_TIMER_BASE = 1.0
+const POPU_TIMER_BASE = 5.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	MapVariables.currency = START_CURRENCY
+	
+	$MoneyTimer.wait_time = MONEY_TIMER_BASE
+	$PopuTimer.wait_time = POPU_TIMER_BASE
+	
 	update()
 
 func _on_MoneyTimer_timeout():
@@ -69,3 +76,8 @@ func get_nb_enabled_building(type):
 		if item['type'] == type and item['enabled'] == true:
 			count += 1
 	return count
+
+func update_timers(selected_sim_speed):
+	var new_sim_speed_factor = SpeedSettings.SpeedFactor[selected_sim_speed]
+	$MoneyTimer.wait_time = MONEY_TIMER_BASE / new_sim_speed_factor
+	$PopuTimer.wait_time = POPU_TIMER_BASE / new_sim_speed_factor
