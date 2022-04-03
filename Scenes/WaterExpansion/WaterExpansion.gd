@@ -2,7 +2,7 @@ extends Node2D
 
 export var X_SIZE = 100
 export var Y_SIZE = 100
-export var NB_RIVERS = 3
+export var NB_RIVERS = 5
 
 export var DIST_SOURCE_BUILDINGS = 3
 export var DIST_SOURCE_SOURCE = 3
@@ -28,8 +28,15 @@ const TIMER_BASE = 0.5
 onready var astar_node = AStar.new()
 const ASTAR_BRIDGE_OFFSET = 1000000
 
+var timers = []
+
 func _ready():
-	$Timer.wait_time = TIMER_BASE
+	for ri in range(0, NB_RIVERS):
+		var timer = Timer.new()
+		timer.set_wait_time(TIMER_BASE/NB_RIVERS * ri + 1)
+		timer.set_autostart(true)
+		timer.connect("timeout", self, "_on_multi_timer_timeout", [ri])
+		$Timers.add_child(timer)
 	
 	X_SIZE = MapVariables.x_size
 	Y_SIZE = MapVariables.y_size
@@ -105,13 +112,19 @@ func can_connect_city_hall(from):
 	var path = astar_node.get_id_path(astar_index(hall_pos), astar_index(from))
 	return path.size() > 0
 
-func _on_Timer_timeout():
-	for river in growing_rivers:
-		river.simulate_flow()
-		if river.stopped :
-			remove_river(growing_rivers.find(river))
-			add_river()
-			
+func _on_multi_timer_timeout(river_index):
+	growing_rivers[river_index].simulate_flow()
+	if growing_rivers[river_index].stopped :
+		remove_river(river_index)
+		add_river()
+
+#func _on_Timer_timeout():
+#	for river in growing_rivers:
+#		river.simulate_flow()
+#		if river.stopped :
+#			remove_river(growing_rivers.find(river))
+#			add_river()
+#
 
 func remove_river(index):
 	var river = growing_rivers[index]
@@ -188,4 +201,5 @@ func build_spawn_table():
 
 func update_timers(selected_sim_speed):
 	var new_sim_speed_factor = SpeedSettings.SpeedFactor[selected_sim_speed]
-	$Timer.wait_time = TIMER_BASE / new_sim_speed_factor
+	for t in $Timers.get_children():
+		t.set_wait_time(TIMER_BASE / new_sim_speed_factor)
