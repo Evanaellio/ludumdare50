@@ -4,7 +4,8 @@ onready var tracker = $Tracker
 
 
 func _ready():
-	pass
+	$BuildMenu/BuildPanel/Housing/ItemList
+	MapVariables.connect("updated", self, "updateUI")
 
 func updateUI():
 	tracker.updateUI()

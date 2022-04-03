@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/WaterExpansion/WaterExpansion.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/BuildingsTileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Scenes/BuildCursor.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Simu.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -39,5 +40,17 @@ collision_mask = 256
 [node name="Shape" type="CollisionShape2D" parent="BuildCursor/Collision"]
 shape = SubResource( 1 )
 
+[node name="Simu" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="MoneyTimer" type="Timer" parent="Simu"]
+autostart = true
+
+[node name="PopuTimer" type="Timer" parent="Simu"]
+wait_time = 5.0
+autostart = true
+
 [connection signal="body_entered" from="BuildCursor/Collision" to="BuildCursor" method="_on_Collision_body_entered"]
 [connection signal="body_exited" from="BuildCursor/Collision" to="BuildCursor" method="_on_Collision_body_exited"]
+[connection signal="timeout" from="Simu/MoneyTimer" to="Simu" method="_on_MoneyTimer_timeout"]
+[connection signal="timeout" from="Simu/PopuTimer" to="Simu" method="_on_PopuTimer_timeout"]
