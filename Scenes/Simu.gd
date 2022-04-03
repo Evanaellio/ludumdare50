@@ -3,10 +3,11 @@ extends Node
 const POPU_INCREASE_PER_BUILDING_PER_TICK = 1
 
 const CURRENCY_INCREASE_PER_POPU_PER_TICK = 2
-
+const START_CURRENCY = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	MapVariables.currency = START_CURRENCY
 	update()
 
 func _on_MoneyTimer_timeout():
@@ -36,9 +37,6 @@ func remove_building(position):
 	update()
 
 func update():
-	var currency = MapVariables.population * CURRENCY_INCREASE_PER_POPU_PER_TICK
-	MapVariables.currency_change = currency
-
 	var nbMaison = get_nb_building(BuildingSettings.BuildingID.House)
 	var nbCityHall = get_nb_building(BuildingSettings.BuildingID.CityHall)
 	var popu = (nbMaison + nbCityHall) * POPU_INCREASE_PER_BUILDING_PER_TICK
@@ -51,6 +49,9 @@ func update():
 	
 	if MapVariables.population == MapVariables.max_population:
 		MapVariables.population_change = 0
+
+	var currency = MapVariables.population * CURRENCY_INCREASE_PER_POPU_PER_TICK
+	MapVariables.currency_change = currency
 
 	MapVariables.update()
 
