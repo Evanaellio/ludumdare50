@@ -72,6 +72,16 @@ func simulate_flow():
 	for direction in DIRECTIONS:
 		if can_go_in_direction(segments[-1], direction):
 			available_directions.append(direction)
+	if len(available_directions) == 0:
+		for direction in DIRECTIONS:
+			if can_go_in_direction(segments[-1], direction, true):
+				available_directions.append(direction)
+	if len(available_directions) == 0:
+		for direction in DIRECTIONS:
+			if can_go_in_direction(segments[-1], direction, true, true):
+				available_directions.append(direction)
+		
+		
 
 	#if current_direction in available_directions and straight_count > 0:
 	#	straight_count -= 1
@@ -93,19 +103,23 @@ func simulate_flow():
 		direction_weights[current_direction].append(choosed_dir_index)
 	add_segment(segments[-1], current_direction)
 
-func can_go_in_direction(segment: Vector2, direction: Vector2) -> bool:
+func can_go_in_direction(segment: Vector2, direction: Vector2, 
+	can_stick: bool = false, can_go_through: bool = false) -> bool:
 		var next_segment = segment + direction
 		# If the segment in two moves is already part of the current river, then the segments should not touch
+		if (tilemap.get_cellv(next_segment) == Tile.WATER || 
+			tilemap.get_cellv(next_segment) == Tile.SOURCE):
+			return false
 		for dir in DIRECTIONS:
 			if (-direction) != dir:
 				var after_next_segment = segment + direction + dir
 				if tilemap.get_cellv(after_next_segment) == Tile.WATER and segments.has(after_next_segment):
-					return false
+					return can_stick
 		var building_tilemap = get_node("../../../Buildings")
 		if building_tilemap != null :
 			var building = building_tilemap.get_cellv(next_segment)
 			if building == Building_Tiles.Dam:
-				return false
+				return can_go_through
 			
 		return (tilemap.get_cellv(next_segment) == Tile.GRASS || 
 			tilemap.get_cellv(next_segment) == Tile.BORDER)
