@@ -17,6 +17,14 @@ func on_options(value:bool)->void:
 		get_tree().get_nodes_in_group("MainMenu")[0].grab_focus()
 
 func _on_NewGame_pressed()->void:
+	var x_size_le = $BG/MarginContainer/VBoxMain/HBoxContainer/Settings/x_size/LineEdit
+	var y_size_le = $BG/MarginContainer/VBoxMain/HBoxContainer/Settings/y_size/LineEdit
+	var seed_le = $BG/MarginContainer/VBoxMain/HBoxContainer/Settings/seed_input/LineEdit
+	
+	MapVariables.x_size = int(x_size_le.text)
+	MapVariables.y_size = int(y_size_le.text)
+	MapVariables.map_seed = str(seed_le.text)
+	
 	Game.emit_signal("NewGame")
 	Game.emit_signal("ChangeScene", First_Level)
 

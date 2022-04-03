@@ -18,7 +18,10 @@ const TIMER_BASE = 0.5
 
 func _ready():
 	$Timer.wait_time = TIMER_BASE
-	randomize()
+	
+	X_SIZE = MapVariables.x_size
+	Y_SIZE = MapVariables.y_size
+	seed(MapVariables.map_seed.hash())
 	
 	for x in range(0, X_SIZE + 2):
 		for y in range(0, Y_SIZE + 2):
