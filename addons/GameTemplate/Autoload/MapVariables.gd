@@ -17,7 +17,7 @@ var next_water_rise_hours = 0
 var x_size: int = 100
 var y_size: int = 100
 
-var map_seed = "ludundare50"
+var map_seed = "ludumdare50"
 
 # {
 #   type: BuildingSettings.BuildingID
