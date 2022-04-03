@@ -95,3 +95,6 @@ func place_building():
 
 func set_sim_speed(selected_sim_speed):
 	world_sim.update_timers(selected_sim_speed)
+	
+	var new_sim_speed_factor = SpeedSettings.SpeedFactor[selected_sim_speed]
+	Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS = Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS_BASE * new_sim_speed_factor

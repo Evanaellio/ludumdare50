@@ -6,7 +6,7 @@ var selected_sim_speed = SpeedSettings.Speed.Speed1
 signal on_sim_speed_changed(speed)
 
 func _ready():
-	pass # Replace with function body.
+	$SpeedList.select(1, true)
 
 
 func _on_SpeedList_item_selected(index):
