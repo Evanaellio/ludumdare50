@@ -10,7 +10,10 @@ func _ready():
 
 func updateUI():
 	var current_population = MapVariables.population
+	var max_population = MapVariables.max_population
 	var current_population_change = MapVariables.population_change
 	
-	population.text = "%04d" % current_population
-	population_change.text = str(current_population_change)
+	population.text = "%d / %d Population" % [current_population, max_population]
+	
+	if current_population_change > 0:
+		population.text += " + %d" % current_population_change

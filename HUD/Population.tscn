@@ -21,6 +21,7 @@ custom_fonts/font = ExtResource( 1 )
 text = "1234"
 
 [node name="Unit" type="Label" parent="HBoxContainer"]
+visible = false
 margin_left = 24.0
 margin_right = 93.0
 margin_bottom = 14.0
@@ -28,6 +29,7 @@ custom_fonts/font = ExtResource( 1 )
 text = "Population  + "
 
 [node name="Expected" type="Label" parent="HBoxContainer"]
+visible = false
 margin_left = 97.0
 margin_right = 107.0
 margin_bottom = 14.0
