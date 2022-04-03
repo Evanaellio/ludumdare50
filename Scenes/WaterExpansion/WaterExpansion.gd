@@ -14,7 +14,10 @@ enum Tile {
 	BORDER = 9
 }
 
+const TIMER_BASE = 0.5
+
 func _ready():
+	$Timer.wait_time = TIMER_BASE
 	randomize()
 	
 	for x in range(0, X_SIZE + 2):
@@ -45,4 +48,7 @@ func add_river():
 	river.init(Vector2(randi() % X_SIZE, randi() % Y_SIZE), tilemap)
 	$Rivers.add_child(river)
 	growing_rivers.append(river)
-	
+
+func update_timers(selected_sim_speed):
+	var new_sim_speed_factor = SpeedSettings.SpeedFactor[selected_sim_speed]
+	$Timer.wait_time = TIMER_BASE / new_sim_speed_factor
