@@ -41,7 +41,7 @@ func remove_building(position):
 		if MapVariables.building[id]['position'] == position:
 			found = id
 	if found > -1:
-		MapVariables.building.erase(found)
+		MapVariables.building.remove(found)
 	update()
 
 func update():
