@@ -27,7 +27,7 @@ func handle_camera(event: InputEvent):
 		if building_mode > -1 and event.button_index == BUTTON_LEFT:
 			if event.pressed == false and !$World/BuildCursor.collide:
 				place_building()
-
+	
 		elif event.button_index == BUTTON_LEFT or event.button_index == BUTTON_MIDDLE:
 			#get_tree().set_input_as_handled();
 			if event.is_pressed():
@@ -38,15 +38,15 @@ func handle_camera(event: InputEvent):
 				
 		if event.button_index == BUTTON_RIGHT and event.pressed == false:
 			disable_build_mode()
-
+	
 		if event.button_index == BUTTON_WHEEL_UP:
 			zoom(zoom_target*0.9, event.position)
-
+	
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			zoom(zoom_target/0.9, event.position)
-
+	
 	if event is InputEventMouseMotion:
-
+	
 		if building_mode > -1:
 			$World/BuildCursor.set_building(building_mode)
 			var pos = get_viewport().canvas_transform.affine_inverse().xform(event.position) - $World.position
@@ -59,11 +59,11 @@ func handle_camera(event: InputEvent):
 
 func zoom(new_zoom, cursor_position):
 	var cam_pos = $Camera2D.position + (-0.5 * $Camera2D.get_viewport().size / 5 + cursor_position)*(zoom_target - new_zoom)
-
+	
 	zoom_target = new_zoom
 	$Camera2D.zoom= zoom_target
 	$Camera2D.position = cam_pos
-
+	
 	#tween.remove_all()
 	#tween.interpolate_property($Camera2D, "zoom", $Camera2D.zoom, zoom_target, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	#tween.interpolate_property($Camera2D, "position", $Camera2D.position, cam_pos, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
@@ -74,10 +74,10 @@ func enable_build_mode(building_id):
 	$World/BuildCursor.visible = true
 	building_mode = building_id
 	_moveCamera = false;
-	
+
 func disable_build_mode():
 	$World/BuildCursor.visible = false
-	building_mode = -1
+	building_mode = BuildingSettings.BuildingID.NONE
 
 func place_building():
 	position = $World/BuildCursor.get_tile_position()

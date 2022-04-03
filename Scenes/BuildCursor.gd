@@ -1,7 +1,16 @@
 extends Node2D
 
-var current_building = 0
+var current_building = BuildingSettings.BuildingID.NONE
 var collide = false
+
+func _process(delta):
+	if collide:
+		modulate = Color("#ff7777")
+	else:
+		if MapVariables.currency > BuildingSettings.buildings_cost[current_building]:
+			modulate = Color("#84ff77")
+		else:
+			modulate = Color("#ff7777")
 
 func set_building(building_id):
 	current_building = building_id
@@ -29,11 +38,6 @@ func get_tile_position():
 func update_collision():
 	var bodies = $Collision.get_overlapping_bodies()
 	collide = bodies.size() > 1
-	
-	if collide:
-		modulate = Color("#ff7777")
-	else:
-		modulate = Color("#84ff77")
 
 func _on_Collision_body_entered(body):
 	update_collision()
