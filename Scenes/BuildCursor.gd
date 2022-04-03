@@ -31,13 +31,13 @@ func set_build_position(local_pos):
 	var building_sprite = BuildingSettings.buildings_sprite[current_building]
 
 	var pos = local_pos
-	if $TileMap.tile_set.tile_get_tile_mode(building_sprite) == 1:
-		pos -= Vector2(16, 16)
-	else:
-		pos -= $TileMap.tile_set.tile_get_region(building_sprite).size / 2
-		pos -= Vector2(8, 8)
+	#if $TileMap.tile_set.tile_get_tile_mode(building_sprite) == 1:
+	#	pos -= Vector2(16, 16)
+	#else:
+	#	pos -= $TileMap.tile_set.tile_get_region(building_sprite).size / 2
+	#	pos -= Vector2(8, 8)
 	
-	pos = Vector2(int(pos.x / 16+1), int(pos.y / 16)+1) * 16
+	pos = Vector2(int(pos.x / 16), int(pos.y / 16)) * 16
 	position = pos
 
 func get_tile_position():

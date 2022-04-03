@@ -54,7 +54,8 @@ func handle_camera(event: InputEvent):
 	
 		if building_mode > -1:
 			$World/BuildCursor.set_building(building_mode)
-			var pos = get_viewport().canvas_transform.affine_inverse().xform(event.position) - $World.position
+			#var pos = get_viewport().canvas_transform.affine_inverse().xform(event.position) - $World.position
+			var pos = get_global_mouse_position() * 0.94
 			$World/BuildCursor.set_build_position(pos)
 	
 		if _moveCamera:
