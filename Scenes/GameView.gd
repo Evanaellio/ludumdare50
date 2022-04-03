@@ -77,13 +77,13 @@ func zoom(new_zoom, cursor_position):
 		return;
 	var cam_pos = $Camera2D.position + (-0.5 * $Camera2D.get_viewport().size / 5 + cursor_position)*(zoom_target - new_zoom)
 	
-	if cam_pos.x > $Camera2D.limit_right - $Camera2D.get_viewport().size.x:
-		cam_pos.x = $Camera2D.limit_right - $Camera2D.get_viewport().size.x
+	if cam_pos.x > $Camera2D.limit_right - $Camera2D.get_viewport().size.x / 5:
+		cam_pos.x = $Camera2D.limit_right - $Camera2D.get_viewport().size.x / 5
 	elif cam_pos.x < $Camera2D.limit_left:
 		cam_pos.x = $Camera2D.limit_left
 		
-	if cam_pos.y > $Camera2D.limit_bottom - $Camera2D.get_viewport().size.y:
-		cam_pos.y = $Camera2D.limit_bottom - $Camera2D.get_viewport().size.y
+	if cam_pos.y > $Camera2D.limit_bottom - $Camera2D.get_viewport().size.y / 5:
+		cam_pos.y = $Camera2D.limit_bottom - $Camera2D.get_viewport().size.y / 5
 	elif cam_pos.y < $Camera2D.limit_top:
 		cam_pos.y = $Camera2D.limit_top
 		
