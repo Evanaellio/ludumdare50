@@ -13,10 +13,10 @@ script = ExtResource( 2 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_top = -31.5
-margin_right = 53.0
+margin_right = 22.0
 margin_bottom = 31.5
 custom_fonts/font = ExtResource( 1 )
-items = [ "Speed0.5", null, false, "Speed1", null, false, "Speed2", null, false ]
+items = [ ">", null, false, ">>", null, false, ">>>", null, false ]
 auto_height = true
 
 [connection signal="item_selected" from="SpeedList" to="." method="_on_SpeedList_item_selected"]

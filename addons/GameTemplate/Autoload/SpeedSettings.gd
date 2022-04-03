@@ -8,7 +8,7 @@ enum Speed {
 }
 
 var SpeedFactor = [
-	0.5,
+	0.25,
 	1.0,
-	2.0,
+	4.0,
 ]
