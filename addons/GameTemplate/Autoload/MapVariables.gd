@@ -33,3 +33,23 @@ func _ready():
 	
 func update():
 	emit_signal("updated")
+
+func find_by_type(type):
+	for item in building:
+		if item['type'] == type:
+			return item['position']
+	return Vector2(-1, -1)
+
+func get_nb_building(type):
+	var count = 0
+	for item in building:
+		if item['type'] == type:
+			count += 1
+	return count
+
+func get_nb_enabled_building(type):
+	var count = 0
+	for item in building:
+		if item['type'] == type and item['enabled'] == true:
+			count += 1
+	return count

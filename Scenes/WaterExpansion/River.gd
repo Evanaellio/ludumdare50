@@ -9,6 +9,8 @@ var segments = []
 var stopped = false
 var DIRECTIONS = [Vector2.UP, Vector2.DOWN, Vector2.RIGHT, Vector2.LEFT]
 
+var WaterExpansion
+
 enum Tile {
 	WATER = 12,
 	PREDICTED_WATER = 2,
@@ -44,9 +46,10 @@ var direction_weights = {
 	Vector2.LEFT : [3,3,3],
 }
 
-func init(p_starting_point: Vector2, p_tilemap: TileMap):
+func init(p_starting_point: Vector2, p_tilemap: TileMap, waterExpansion):
 	starting_point = p_starting_point
 	tilemap = p_tilemap
+	WaterExpansion = waterExpansion
 	get_instance_id()
 	add_segment(starting_point, current_direction, Tile.SOURCE)
 	
@@ -57,6 +60,7 @@ func add_segment(position: Vector2, direction: Vector2, tile = Tile.WATER):
 		stopped = true;
 	else:
 		tilemap.set_cellv(new_segment, tile)
+		WaterExpansion.remove_astar_point(new_segment)
 	tilemap.update_bitmask_region(new_segment)
 	segments.append(new_segment)
 	$Collider.position = (new_segment * 16 + Vector2(8, 8))
