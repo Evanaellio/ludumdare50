@@ -93,9 +93,11 @@ func remove_river(index):
 	still_rivers.append(river)
 	var anim_sprite = river.get_node("Source")
 	var still_sprite = river.get_node("SourceStopped")
+	var particules_handle = river.get_node("WaterParticules")
 	if anim_sprite != null and still_sprite != null:
 		anim_sprite.visible = false
 		still_sprite.visible = true
+		particules_handle.emitting = false
 	growing_rivers.remove(index)
 	
 
