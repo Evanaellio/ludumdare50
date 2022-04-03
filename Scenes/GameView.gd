@@ -14,6 +14,8 @@ onready var water_sim = $World/WaterExpansion
 
 var building_mode = -1
 
+var gameover = false
+
 func _ready():
 	build_menu.connect("on_building_selected", self, "enable_build_mode")
 	speed_menu.connect("on_sim_speed_changed", self, "set_sim_speed")
@@ -34,6 +36,9 @@ func _unhandled_input(event: InputEvent):
 	handle_camera(event)
 
 func handle_camera(event: InputEvent):
+	if gameover:
+		return
+
 	if event is InputEventMouseButton:
 		if building_mode > -1 and event.button_index == BUTTON_LEFT:
 			if event.pressed == false and $World/BuildCursor.can_be_placed:
@@ -142,6 +147,10 @@ func destroy_building(position):
 			$World/BuildingsCollisions.set_cellv(real_pos + Vector2(i, j), -1)
 			$World/BuildingsDisabled.set_cellv(real_pos + Vector2(i, j), 1)
 			MapVariables.inverse_build_map.erase(real_pos + Vector2(i, j))
+
+	if id == BuildingSettings.BuildingID.CityHall:
+		$CanvasLayer/GameOver.visible = true
+		gameover = true
 
 	$World/Buildings.set_cellv(real_pos, -1)
 	$World/Buildings.update_bitmask_region(real_pos)

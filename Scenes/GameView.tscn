@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/World.tscn" type="PackedScene" id=1]
 [ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/GameView.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/DayNight.tscn" type="PackedScene" id=4]
+[ext_resource path="res://addons/GameTemplate/GUI/OptionsSections/DarkerPanel.tres" type="StyleBox" id=5]
+[ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_16.tres" type="DynamicFont" id=6]
+[ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale-v-1-4.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 7 )
 
 [node name="GameView" type="Node2D"]
 script = ExtResource( 3 )
@@ -28,5 +36,41 @@ transform = Transform2D( 0.2, 0, 0, 0.2, 0, 0 )
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 2 )]
 rect_scale = Vector2( 5, 5 )
 input_pass_on_modal_close_click = false
+
+[node name="GameOver" type="Node2D" parent="CanvasLayer"]
+visible = false
+position = Vector2( 410, 130 )
+
+[node name="Panel" type="Panel" parent="CanvasLayer/GameOver"]
+margin_right = 150.0
+margin_bottom = 144.0
+rect_scale = Vector2( 5, 5 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 5 )
+
+[node name="Title" type="Label" parent="CanvasLayer/GameOver/Panel"]
+margin_left = 24.0
+margin_top = 8.0
+margin_right = 126.0
+margin_bottom = 42.0
+size_flags_horizontal = 5
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 6 )
+text = "Game Over"
+align = 1
+
+[node name="Text" type="Label" parent="CanvasLayer/GameOver/Panel"]
+margin_left = 37.0
+margin_top = 48.0
+margin_right = 181.0
+margin_bottom = 119.0
+rect_scale = Vector2( 0.5, 0.5 )
+size_flags_horizontal = 5
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+text = "Your city hall
+was destroyed!"
+align = 1
 
 [node name="DayNightCycle" parent="." instance=ExtResource( 4 )]
