@@ -44,7 +44,8 @@ func handle_camera(event: InputEvent):
 				_moveCamera = false;
 				
 		if event.button_index == BUTTON_RIGHT and event.pressed == false:
-			disable_build_mode()
+			if building_mode != BuildingSettings.BuildingID.CityHall:
+				disable_build_mode()
 	
 		if event.button_index == BUTTON_WHEEL_UP:
 			zoom(zoom_target*0.9, event.position)
