@@ -1,7 +1,6 @@
 class_name River
 extends Node2D
 
-var starting_point: Vector2
 var tilemap: TileMap
 var river_id: int
 
@@ -47,15 +46,15 @@ var direction_weights = {
 }
 
 func init(p_starting_point: Vector2, p_tilemap: TileMap, waterExpansion):
-	starting_point = p_starting_point
+	self.position = p_starting_point*16 + Vector2(8, 8)
 	tilemap = p_tilemap
 	WaterExpansion = waterExpansion
 	get_instance_id()
-	add_segment(starting_point, current_direction, Tile.SOURCE)
+	add_segment(p_starting_point, Vector2(0,0), Tile.SOURCE)
 	
 
-func add_segment(position: Vector2, direction: Vector2, tile = Tile.WATER):
-	var new_segment = position + direction
+func add_segment(grid_position: Vector2, direction: Vector2, tile = Tile.WATER):
+	var new_segment = grid_position + direction
 	if tilemap.get_cellv(new_segment) == Tile.BORDER:
 		stopped = true;
 	else:
@@ -63,7 +62,7 @@ func add_segment(position: Vector2, direction: Vector2, tile = Tile.WATER):
 		WaterExpansion.remove_astar_point(new_segment)
 	tilemap.update_bitmask_region(new_segment)
 	segments.append(new_segment)
-	$Collider.position = (new_segment * 16 + Vector2(8, 8))
+	$Collider.position += (direction * 16)
 
 func simulate_flow():
 	if stopped:

@@ -6,13 +6,13 @@
 [node name="WaterExpansion" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="Rivers" type="Node2D" parent="."]
+
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
 tile_data = PoolIntArray( 100, 7, 0, 6553700, 7, 0 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
-
-[node name="Rivers" type="Node2D" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

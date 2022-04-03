@@ -89,7 +89,13 @@ func _on_Timer_timeout():
 			
 
 func remove_river(index):
-	still_rivers.append(growing_rivers[index])
+	var river = growing_rivers[index]
+	still_rivers.append(river)
+	var anim_sprite = river.get_node("Source")
+	var still_sprite = river.get_node("SourceStopped")
+	if anim_sprite != null and still_sprite != null:
+		anim_sprite.visible = false
+		still_sprite.visible = true
 	growing_rivers.remove(index)
 	
 
