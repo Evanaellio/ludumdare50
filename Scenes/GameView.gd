@@ -17,6 +17,8 @@ var building_mode = -1
 func _ready():
 	build_menu.connect("on_building_selected", self, "enable_build_mode")
 	speed_menu.connect("on_sim_speed_changed", self, "set_sim_speed")
+	
+	building_mode = BuildingSettings.BuildingID.CityHall
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
