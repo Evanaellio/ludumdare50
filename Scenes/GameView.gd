@@ -81,6 +81,10 @@ func disable_build_mode():
 
 func place_building():
 	position = $World/BuildCursor.get_tile_position()
-	$World/Buildings.set_cellv(position, building_mode)
+	var building_sprite = BuildingSettings.buildings_sprite[building_mode]
+	$World/Buildings.set_cellv(position, building_sprite)
 	$World/Buildings.update_bitmask_region(position)
+
+	$World/Simu.add_building(building_mode, position)
+
 	disable_build_mode()

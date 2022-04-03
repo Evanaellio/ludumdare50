@@ -3,15 +3,20 @@ extends Node
 enum BuildingID {
 	NONE = -1,
 	CityHall = 0,
-	FakeDam = 1,
-	House = 2,
-	Pump = 3,
-	Dam = 4,
+	House = 1,
+	Pump = 2,
+	Dam = 3,
 }
+
+var buildings_sprite = [
+	0, #CityHall
+	2, #House
+	3, #Pump
+	4, #Dam
+]
 
 var buildings_max_inhabitants = [
 	5, #CityHall
-	0, #FakeDam
 	5, #House
 	0, #Pump
 	0, #Dam
@@ -19,7 +24,6 @@ var buildings_max_inhabitants = [
 
 var buildings_max_employees = [
 	0, #CityHall
-	0, #FakeDam
 	0, #House
 	1, #Pump
 	0, #Dam
@@ -27,7 +31,6 @@ var buildings_max_employees = [
 
 var buildings_cost = [
 	0, #CityHall
-	0, #FakeDam
 	50, #House
 	25, #Pump
 	30, #Dam
