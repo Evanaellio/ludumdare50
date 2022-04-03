@@ -93,6 +93,7 @@ func place_building():
 	for i in range(0, BuildingSettings.buildings_size[building_mode].x):
 		for j in range(0, BuildingSettings.buildings_size[building_mode].y):
 			$World/BuildingsCollisions.set_cellv(position + Vector2(i, j), 4)
+			$World/BuildingsDisabled.set_cellv(position + Vector2(i, j), -1)
 
 			MapVariables.inverse_build_map[position + Vector2(i, j)] = position
 
@@ -112,6 +113,7 @@ func destroy_building(position):
 	for i in range(0, BuildingSettings.buildings_size[id].x):
 		for j in range(0, BuildingSettings.buildings_size[id].y):
 			$World/BuildingsCollisions.set_cellv(real_pos + Vector2(i, j), -1)
+			$World/BuildingsDisabled.set_cellv(real_pos + Vector2(i, j), 1)
 			MapVariables.inverse_build_map.erase(real_pos + Vector2(i, j))
 
 	$World/Buildings.set_cellv(real_pos, -1)
