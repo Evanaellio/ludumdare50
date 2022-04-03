@@ -51,6 +51,11 @@ func update_collision():
 	var bodies = $Collision.get_overlapping_bodies()
 	collide = bodies.size() > 1
 
+	# bridges can be built on water
+	if current_building == BuildingSettings.BuildingID.Bridge:
+		if get_node("../WaterExpansion/TileMap").get_cellv(get_tile_position()) == 12:
+			collide = false
+
 func _on_Collision_body_entered(_body):
 	update_collision()
 
