@@ -22,6 +22,10 @@ func set_building(building_id):
 	var building_sprite = BuildingSettings.buildings_sprite[building_id]
 	
 	$TileMap.set_cell(0, 0, building_sprite)
+	
+	if building_id == BuildingSettings.BuildingID.Bridge:
+		$TileMap.set_cell(0, 0, 6)
+	
 	var texture = $TileMap.tile_set.tile_get_texture(building_sprite)
 	
 	$Collision/Shape.shape = $TileMap.tile_set.tile_get_shape(building_sprite, 0)

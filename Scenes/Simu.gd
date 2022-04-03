@@ -81,6 +81,7 @@ func on_water_placed():
 
 		if building["type"] == BuildingSettings.BuildingID.Bridge:
 			if get_node("../WaterExpansion/TileMap").get_cellv(building["position"]) == 12:
+				get_node("../BuildingsDisabled").set_cellv(building["position"], -1)
 				continue
 
 		var connected = water_exp.can_connect_city_hall(building["position"])

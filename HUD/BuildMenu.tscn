@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_8.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Sprites/Building/DamPreview.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/Sprites/Building/House.png" type="Texture" id=4]
 [ext_resource path="res://addons/GameTemplate/Assets/Fonts/pixellocale_64.tres" type="DynamicFont" id=5]
 [ext_resource path="res://HUD/BuildMenu.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Sprites/Building/BridgePreview.png" type="Texture" id=7]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 1 )
@@ -62,7 +63,7 @@ margin_bottom = 47.0
 rect_min_size = Vector2( 180, 0 )
 mouse_default_cursor_shape = 2
 custom_fonts/font = ExtResource( 5 )
-items = [ "Dam", ExtResource( 2 ), false, "House", ExtResource( 4 ), false, "Pump", ExtResource( 3 ), false, "Bridge", null, false ]
+items = [ "Dam", ExtResource( 2 ), false, "House", ExtResource( 4 ), false, "Pump", ExtResource( 3 ), false, "Bridge", ExtResource( 7 ), false ]
 allow_reselect = true
 auto_height = true
 max_columns = 5
