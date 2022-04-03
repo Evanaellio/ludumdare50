@@ -21,6 +21,8 @@ var next_water_rise_hours = 0
 # }
 var building = []
 
+var inverse_build_map = {}
+
 func _ready():
 	pass # Replace with function body.
 	

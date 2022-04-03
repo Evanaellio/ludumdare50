@@ -36,6 +36,19 @@ var buildings_cost = [
 	30, #Dam
 ]
 
+var buildings_size = [
+	Vector2(4, 3), #CityHall
+	Vector2(2, 2), #House
+	Vector2(1, 1), #Pump
+	Vector2(1, 1), #Dam
+]
+
+func get_id_by_sprite(sprite):
+	for id in BuildingID.values():
+		if buildings_sprite[id] == sprite:
+			return id
+	return -1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

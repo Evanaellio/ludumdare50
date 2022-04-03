@@ -88,10 +88,34 @@ func place_building():
 	var building_sprite = BuildingSettings.buildings_sprite[building_mode]
 	$World/Buildings.set_cellv(position, building_sprite)
 	$World/Buildings.update_bitmask_region(position)
-	
+
+	for i in range(0, BuildingSettings.buildings_size[building_mode].x):
+		for j in range(0, BuildingSettings.buildings_size[building_mode].y):
+			$World/BuildingsCollisions.set_cellv(position + Vector2(i, j), 4)
+
+			MapVariables.inverse_build_map[position + Vector2(i, j)] = position
+
 	$World/Simu.add_building(building_mode, position)
-	
+
 	disable_build_mode()
+
+func destroy_building(position):
+	if not MapVariables.inverse_build_map.has(position):
+		return
+
+	var real_pos = MapVariables.inverse_build_map[position]
+	
+	var id = BuildingSettings.get_id_by_sprite($World/Buildings.get_cellv(real_pos))
+
+	for i in range(0, BuildingSettings.buildings_size[id].x):
+		for j in range(0, BuildingSettings.buildings_size[id].y):
+			$World/BuildingsCollisions.set_cellv(real_pos + Vector2(i, j), -1)
+			MapVariables.inverse_build_map.erase(real_pos + Vector2(i, j))
+
+	$World/Buildings.set_cellv(real_pos, -1)
+	$World/Buildings.update_bitmask_region(real_pos)
+
+	$World/Simu.remove_building(real_pos)
 
 func set_sim_speed(selected_sim_speed):
 	world_sim.update_timers(selected_sim_speed)
