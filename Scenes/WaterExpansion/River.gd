@@ -98,7 +98,12 @@ func can_go_in_direction(segment: Vector2, direction: Vector2) -> bool:
 				var after_next_segment = segment + direction + dir
 				if tilemap.get_cellv(after_next_segment) == Tile.WATER and segments.has(after_next_segment):
 					return false
-		
+		var building_tilemap = get_node("../../../Buildings")
+		if building_tilemap != null :
+			var building = building_tilemap.get_cellv(next_segment)
+			if building == Building_Tiles.Dam:
+				return false
+			
 		return (tilemap.get_cellv(next_segment) == Tile.GRASS || 
 			tilemap.get_cellv(next_segment) == Tile.BORDER)
 
@@ -111,5 +116,3 @@ func _on_river_collider_body_shape_entered(body_rid, body, body_shape_index, loc
 				var gameview = get_node("../../../..")
 				if gameview != null and gameview.has_method("destroy_building"):
 					gameview.destroy_building(segments[-1])
-				#var tilemap = get_node("../../../Buildings")
-				#var building = tilemap.get_cellv(segments[-1])
