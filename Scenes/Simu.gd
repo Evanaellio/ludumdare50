@@ -2,10 +2,10 @@ extends Node
 
 const POPU_INCREASE_PER_BUILDING_PER_TICK = 1
 
-const CURRENCY_INCREASE_PER_POPU_PER_TICK = 2
-const START_CURRENCY = 1000
+const CURRENCY_INCREASE_PER_POPU_PER_TICK = 1
+const START_CURRENCY = 100
 
-const MONEY_TIMER_BASE = 1.0
+const MONEY_TIMER_BASE = 2.0
 const POPU_TIMER_BASE = 5.0
 
 onready var water_exp = get_node("../WaterExpansion")
