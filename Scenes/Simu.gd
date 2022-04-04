@@ -12,6 +12,20 @@ onready var water_exp = get_node("../WaterExpansion")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS = Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS_BASE
+	Time._ready()
+	MapVariables.currency_change = 0
+	MapVariables.max_population = 0
+	MapVariables.population = 0
+	MapVariables.population_change = 0
+	MapVariables.water_stored = 0
+	MapVariables.water_storage = 0
+	MapVariables.next_water_rise_hours = 0
+	
+	MapVariables.building.clear()
+	MapVariables.inverse_build_map.clear()
+	
+	
 	MapVariables.currency = START_CURRENCY
 	
 	$MoneyTimer.wait_time = MONEY_TIMER_BASE

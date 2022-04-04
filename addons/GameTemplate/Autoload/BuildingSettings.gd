@@ -9,7 +9,7 @@ enum BuildingID {
 	Bridge = 4,
 }
 
-var buildings_sprite = [
+const buildings_sprite = [
 	0, #CityHall
 	2, #House
 	3, #Pump
@@ -17,7 +17,7 @@ var buildings_sprite = [
 	5, #Bridge
 ]
 
-var buildings_max_inhabitants = [
+const buildings_max_inhabitants = [
 	5, #CityHall
 	5, #House
 	0, #Pump
@@ -25,7 +25,7 @@ var buildings_max_inhabitants = [
 	0, #Bridge
 ]
 
-var buildings_max_employees = [
+const buildings_max_employees = [
 	0, #CityHall
 	0, #House
 	1, #Pump
@@ -33,7 +33,7 @@ var buildings_max_employees = [
 	0, #Bridge
 ]
 
-var buildings_cost = [
+const buildings_cost = [
 	0, #CityHall
 	50, #House
 	25, #Pump
@@ -41,7 +41,7 @@ var buildings_cost = [
 	10, #Bridge TODO
 ]
 
-var buildings_size = [
+const buildings_size = [
 	Vector2(4, 3), #CityHall
 	Vector2(2, 2), #House
 	Vector2(1, 1), #Pump
