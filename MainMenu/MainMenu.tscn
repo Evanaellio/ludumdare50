@@ -44,96 +44,102 @@ margin_right = 176.0
 margin_bottom = 64.0
 texture = ExtResource( 2 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BG/MarginContainer/VBoxMain"]
+[node name="CenterContainer" type="CenterContainer" parent="BG/MarginContainer/VBoxMain"]
 margin_top = 68.0
 margin_right = 288.0
-margin_bottom = 148.0
+margin_bottom = 127.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BG/MarginContainer/VBoxMain/CenterContainer"]
+margin_left = 60.0
+margin_right = 228.0
+margin_bottom = 59.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ButtonContainer" type="VBoxContainer" parent="BG/MarginContainer/VBoxMain/HBoxContainer"]
+[node name="ButtonContainer" type="VBoxContainer" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer"]
 margin_right = 51.0
-margin_bottom = 80.0
+margin_bottom = 59.0
 size_flags_vertical = 3
 custom_constants/separation = 1
 
-[node name="NewGame" parent="BG/MarginContainer/VBoxMain/HBoxContainer/ButtonContainer" groups=["MainMenu"] instance=ExtResource( 1 )]
+[node name="NewGame" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/ButtonContainer" groups=["MainMenu"] instance=ExtResource( 1 )]
 margin_right = 51.0
 text = "New Game"
 
-[node name="Options" parent="BG/MarginContainer/VBoxMain/HBoxContainer/ButtonContainer" instance=ExtResource( 1 )]
+[node name="Options" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/ButtonContainer" instance=ExtResource( 1 )]
 margin_top = 20.0
 margin_right = 51.0
 margin_bottom = 39.0
 text = "Options"
 
-[node name="Exit" parent="BG/MarginContainer/VBoxMain/HBoxContainer/ButtonContainer" instance=ExtResource( 1 )]
+[node name="Exit" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/ButtonContainer" instance=ExtResource( 1 )]
 margin_top = 40.0
 margin_right = 51.0
 margin_bottom = 59.0
 text = "Exit"
 
-[node name="VSeparator" type="VSeparator" parent="BG/MarginContainer/VBoxMain/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer"]
 margin_left = 55.0
 margin_right = 105.0
-margin_bottom = 80.0
+margin_bottom = 59.0
 rect_min_size = Vector2( 50, 0 )
 
-[node name="Settings" type="VBoxContainer" parent="BG/MarginContainer/VBoxMain/HBoxContainer"]
+[node name="Settings" type="VBoxContainer" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer"]
 margin_left = 109.0
-margin_right = 220.0
-margin_bottom = 80.0
+margin_right = 168.0
+margin_bottom = 59.0
 
-[node name="x_size" type="HBoxContainer" parent="BG/MarginContainer/VBoxMain/HBoxContainer/Settings"]
-margin_right = 111.0
+[node name="x_size" type="HBoxContainer" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/Settings"]
+margin_right = 59.0
 margin_bottom = 24.0
 
-[node name="Label" type="Label" parent="BG/MarginContainer/VBoxMain/HBoxContainer/Settings/x_size"]
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/Settings/x_size"]
 margin_top = 5.0
 margin_right = 9.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 4 )
 text = "x:"
 
-[node name="LineEdit" type="LineEdit" parent="BG/MarginContainer/VBoxMain/HBoxContainer/Settings/x_size"]
+[node name="LineEdit" type="LineEdit" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/Settings/x_size"]
 margin_left = 13.0
 margin_right = 59.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 4 )
 text = "100"
 
-[node name="y_size" type="HBoxContainer" parent="BG/MarginContainer/VBoxMain/HBoxContainer/Settings"]
+[node name="y_size" type="HBoxContainer" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/Settings"]
 margin_top = 28.0
-margin_right = 111.0
+margin_right = 59.0
 margin_bottom = 52.0
 
-[node name="Label" type="Label" parent="BG/MarginContainer/VBoxMain/HBoxContainer/Settings/y_size"]
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/Settings/y_size"]
 margin_top = 5.0
 margin_right = 9.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 4 )
 text = "y:"
 
-[node name="LineEdit" type="LineEdit" parent="BG/MarginContainer/VBoxMain/HBoxContainer/Settings/y_size"]
+[node name="LineEdit" type="LineEdit" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/Settings/y_size"]
 margin_left = 13.0
 margin_right = 59.0
 margin_bottom = 24.0
 custom_fonts/font = ExtResource( 4 )
 text = "100"
 
-[node name="seed_input" type="HBoxContainer" parent="BG/MarginContainer/VBoxMain/HBoxContainer/Settings"]
+[node name="seed_input" type="HBoxContainer" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/Settings"]
+visible = false
 margin_top = 56.0
 margin_right = 111.0
 margin_bottom = 80.0
 
-[node name="Label" type="Label" parent="BG/MarginContainer/VBoxMain/HBoxContainer/Settings/seed_input"]
+[node name="Label" type="Label" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/Settings/seed_input"]
 margin_top = 5.0
 margin_right = 27.0
 margin_bottom = 19.0
 custom_fonts/font = ExtResource( 4 )
 text = "seed:"
 
-[node name="LineEdit" type="LineEdit" parent="BG/MarginContainer/VBoxMain/HBoxContainer/Settings/seed_input"]
+[node name="LineEdit" type="LineEdit" parent="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/Settings/seed_input"]
 margin_left = 31.0
 margin_right = 111.0
 margin_bottom = 24.0
@@ -141,6 +147,6 @@ rect_min_size = Vector2( 80, 0 )
 custom_fonts/font = ExtResource( 4 )
 text = "ludumdare50"
 
-[connection signal="pressed" from="BG/MarginContainer/VBoxMain/HBoxContainer/ButtonContainer/NewGame" to="." method="_on_NewGame_pressed"]
-[connection signal="pressed" from="BG/MarginContainer/VBoxMain/HBoxContainer/ButtonContainer/Options" to="." method="_on_Options_pressed"]
-[connection signal="pressed" from="BG/MarginContainer/VBoxMain/HBoxContainer/ButtonContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/ButtonContainer/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/ButtonContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="BG/MarginContainer/VBoxMain/CenterContainer/HBoxContainer/ButtonContainer/Exit" to="." method="_on_Exit_pressed"]

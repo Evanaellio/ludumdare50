@@ -12,6 +12,8 @@ onready var water_exp = get_node("../WaterExpansion")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#seed(MapVariables.map_seed.hash())
+	
 	Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS = Time.IN_GAME_SECONDS_PER_REAL_TIME_SECONDS_BASE
 	Time._set_freeze_time(false)
 	Time._ready()

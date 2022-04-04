@@ -29,11 +29,13 @@ onready var astar_node = AStar.new()
 const ASTAR_BRIDGE_OFFSET = 1000000
 
 func _ready():
+	randomize()
+	
 	$Timer.wait_time = TIMER_BASE
 	
 	X_SIZE = MapVariables.x_size
 	Y_SIZE = MapVariables.y_size
-	seed(MapVariables.map_seed.hash())
+	
 	if DIST_SOURCE_BORDER > Y_SIZE / 10 :
 		DIST_SOURCE_BORDER = 0
 	
