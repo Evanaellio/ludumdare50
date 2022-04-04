@@ -36,6 +36,11 @@ func _ready():
 	X_SIZE = MapVariables.x_size
 	Y_SIZE = MapVariables.y_size
 	
+	if min(X_SIZE, Y_SIZE) < 64:
+		NB_RIVERS = 2
+	if min(X_SIZE, Y_SIZE) < 32:
+		NB_RIVERS = 1
+	
 	if DIST_SOURCE_BORDER > Y_SIZE / 10 :
 		DIST_SOURCE_BORDER = 0
 	

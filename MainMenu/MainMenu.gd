@@ -39,3 +39,18 @@ func retranslate()->void:
 	find_node("NewGame").text = tr("NEW_GAME")
 	find_node("Options").text = tr("OPTIONS")
 	find_node("Exit").text = tr("EXIT")
+
+
+func _on_LineEdit_y_text_changed(new_text):
+	var y_size_le = $BG/Settings/y_size/LineEdit
+	if int(y_size_le.text) > 128:
+		y_size_le.text = "128"
+	if int(y_size_le.text) < 16:
+		y_size_le.text = "16"
+
+func _on_LineEdit_x_text_changed(new_text):
+	var x_size_le = $BG/Settings/x_size/LineEdit
+	if int(x_size_le.text) > 128:
+		x_size_le.text = "128"
+	if int(x_size_le.text) < 16:
+		x_size_le.text = "16"
