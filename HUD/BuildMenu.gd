@@ -38,8 +38,6 @@ func _on_ItemList_misc_item_selected(index):
 		1:
 			building = BuildingSettings.BuildingID.House
 		2:
-			building = BuildingSettings.BuildingID.Pump
-		3:
 			building = BuildingSettings.BuildingID.Bridge
 	
 	cost_tracker.text = "%d€" % BuildingSettings.buildings_cost[building]
