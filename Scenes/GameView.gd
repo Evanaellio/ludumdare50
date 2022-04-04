@@ -152,6 +152,7 @@ func destroy_building(position):
 
 	if id == BuildingSettings.BuildingID.CityHall:
 		$CanvasLayer/GameOver.visible = true
+		Time._set_freeze_time(true)
 		gameover = true
 
 	$World/Buildings.set_cellv(real_pos, -1)
