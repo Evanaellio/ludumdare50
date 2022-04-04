@@ -35,6 +35,7 @@ rect_scale = Vector2( 5, 5 )
 input_pass_on_modal_close_click = false
 
 [node name="GameOver" type="Node2D" parent="CanvasLayer"]
+visible = false
 position = Vector2( 410, 130 )
 
 [node name="Panel" type="Panel" parent="CanvasLayer/GameOver"]
