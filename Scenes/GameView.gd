@@ -21,6 +21,8 @@ func _ready():
 	speed_menu.connect("on_sim_speed_changed", self, "set_sim_speed")
 	
 	building_mode = BuildingSettings.BuildingID.CityHall
+
+	$Camera2D.position += Vector2(MapVariables.x_size, MapVariables.y_size) * 8
 	
 	#$Camera2D.limit_right = (MapVariables.x_size + 4) * 16
 	#$Camera2D.limit_bottom = (MapVariables.y_size + 3) * 16
@@ -56,10 +58,10 @@ func handle_camera(event: InputEvent):
 			if building_mode != BuildingSettings.BuildingID.CityHall:
 				disable_build_mode()
 	
-		if event.button_index == BUTTON_WHEEL_UP:
+		if event.button_index == BUTTON_WHEEL_UP and zoom_target.x > 1:
 			zoom(zoom_target*0.9, event.position)
 	
-		if event.button_index == BUTTON_WHEEL_DOWN:
+		if event.button_index == BUTTON_WHEEL_DOWN and zoom_target.x < 10:
 			zoom(zoom_target/0.9, event.position)
 	
 	if event is InputEventMouseMotion:
